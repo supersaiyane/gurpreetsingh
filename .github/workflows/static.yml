@@ -31,16 +31,10 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
-      # Optional: If you have a build step (Next.js / React / Docsify / MkDocs etc)
-      # - name: Build site
-      #   run: |
-      #     npm install
-      #     npm run build
-
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public   # Change this to your static folder
+          path: .
 
       - name: Deploy to GitHub Pages
         id: deployment
