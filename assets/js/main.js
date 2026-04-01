@@ -319,7 +319,8 @@
     $('.nav-menu .nav-sub').removeClass('visible');
     $('.nav-menu .nav-sub[data-for-tab="' + tab + '"]').addClass('visible');
 
-    // Re-init AOS and scroll to top of tab content (right below sticky tab bar)
+    // Reset any stale transforms and re-init AOS
+    $('.section-title span').css('transform', 'none');
     AOS.refresh();
     var tabBarHeight = $('#tabNav').outerHeight();
     var scrollTarget = $('#tabNav').offset().top;
@@ -469,13 +470,6 @@
     // Parallax for ambient blobs
     $('.ambient-blob-1').css('transform', 'translateY(' + (scrolled * 0.04) + 'px)');
     $('.ambient-blob-2').css('transform', 'translateY(' + (scrolled * -0.03) + 'px)');
-
-    // Parallax for section titles - subtle float
-    $('.section-title span').each(function() {
-      var sectionTop = $(this).closest('section').offset().top;
-      var offset = (scrolled - sectionTop) * 0.05;
-      $(this).css('transform', 'translateY(' + offset + 'px)');
-    });
   });
 
   // Water ripple effect on click
