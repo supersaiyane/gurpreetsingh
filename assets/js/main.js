@@ -62,17 +62,45 @@
     setTimeout(runTerminalSequence, 800);
   });
 
+  // Map sections to their parent tab
+  var sectionTabMap = {
+    'stats': 'portfolio',
+    'about': 'portfolio',
+    'skills': 'portfolio',
+    'resume': 'portfolio',
+    'testimonials': 'portfolio',
+    'projects': 'projects'
+  };
+
   // Smooth scroll for links with .scrollto class
   $(document).on('click', '.scrollto', function(e) {
     if (this.hash) {
-      var target = $(this.hash);
-      if (target.length) {
-        e.preventDefault();
-        $('html, body').animate({
-          scrollTop: target.offset().top
-        }, 1000, 'easeInOutExpo');
-        return false;
+      e.preventDefault();
+      var hash = this.hash.substring(1);
+      var requiredTab = sectionTabMap[hash];
+
+      // If target is inside a tab, switch to that tab first
+      if (requiredTab) {
+        // Switch tab without scrolling
+        $('.tab-btn').removeClass('active');
+        $('.tab-btn[data-tab="' + requiredTab + '"]').addClass('active');
+        $('.tab-content').removeClass('active');
+        $('#tab-' + requiredTab).addClass('active');
+        $('.section-title span').css('transform', 'none');
+        setTimeout(function() { AOS.refresh(); }, 50);
       }
+
+      // Scroll to target after tab is visible
+      setTimeout(function() {
+        var target = $('#' + hash);
+        if (target.length && target.is(':visible')) {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 800, 'easeInOutExpo');
+        }
+      }, requiredTab ? 100 : 0);
+
+      return false;
     }
   });
 
