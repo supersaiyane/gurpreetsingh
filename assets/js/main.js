@@ -319,13 +319,22 @@
     $('.nav-menu .nav-sub').removeClass('visible');
     $('.nav-menu .nav-sub[data-for-tab="' + tab + '"]').addClass('visible');
 
-    // Re-init AOS and scroll to tabs
+    // Re-init AOS and scroll to top of tab content (right below sticky tab bar)
     AOS.refresh();
-    $('html, body').animate({ scrollTop: $('#tabNav').offset().top }, 400, 'easeInOutExpo');
+    var tabBarHeight = $('#tabNav').outerHeight();
+    var scrollTarget = $('#tabNav').offset().top;
+    $('html, body').animate({ scrollTop: scrollTarget }, 400, 'easeInOutExpo');
   }
 
   // Show portfolio sub-links on page load (default active tab)
   $('.nav-menu .nav-sub[data-for-tab="portfolio"]').addClass('visible');
+
+  // On page load, scroll to top
+  $(window).on('load', function() {
+    if (!window.location.hash) {
+      $('html, body').scrollTop(0);
+    }
+  });
 
   // Tab bar button click
   $('.tab-btn').on('click', function() {
