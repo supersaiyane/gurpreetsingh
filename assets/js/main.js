@@ -344,62 +344,35 @@
     statsObserver.observe(document.getElementById('stats'));
   }
 
-  // ======= Articles =======
-  // Add your articles here. Each article is an object with title, url, tag, excerpt, date, readTime.
-  var articles = [
-    {
-      title: "SRE at Scale: How We Built an SLO Framework for Banking",
-      url: "https://medium.com/@gurpreet.singh_89",
-      tag: "SRE",
-      excerpt: "A deep dive into how we designed and implemented SLO frameworks across mission-critical banking platforms, balancing regulatory compliance with engineering velocity.",
-      date: "2025",
-      readTime: "8 min"
-    },
-    {
-      title: "From Monolith to Microservices: Lessons from MakeMyTrip",
-      url: "https://medium.com/@gurpreet.singh_89",
-      tag: "Architecture",
-      excerpt: "The real story of migrating high-traffic travel platforms from monolithic services to microservices on AWS — what worked, what didn't, and what we'd do differently.",
-      date: "2025",
-      readTime: "10 min"
-    },
-    {
-      title: "AIOps in Practice: Reducing MTTR with Intelligent Automation",
-      url: "https://medium.com/@gurpreet.singh_89",
-      tag: "AIOps",
-      excerpt: "How we leveraged LLMs and automated remediation to cut Mean Time To Recovery by 60% across distributed systems in regulated environments.",
-      date: "2025",
-      readTime: "7 min"
-    },
-    {
-      title: "FinOps for Engineers: A Practical Guide to Cloud Cost Optimization",
-      url: "https://medium.com/@gurpreet.singh_89",
-      tag: "FinOps",
-      excerpt: "Cloud cost optimization isn't just a finance problem. Here's how engineering teams can drive FinOps initiatives with data-driven decisions and automated guardrails.",
-      date: "2024",
-      readTime: "9 min"
-    },
-    {
-      title: "Building an Internal Developer Platform with Backstage",
-      url: "https://medium.com/@gurpreet.singh_89",
-      tag: "Platform Engineering",
-      excerpt: "Our journey building a Backstage-powered IDP with GitOps, guardrails, observability, and incident automation — making developers self-sufficient at scale.",
-      date: "2024",
-      readTime: "12 min"
-    },
-    {
-      title: "Kubernetes Auto-Remediation: Building a Self-Healing Platform",
-      url: "https://medium.com/@gurpreet.singh_89",
-      tag: "Kubernetes",
-      excerpt: "How we built a K8s DaemonSet that handles auto-remediation, scaling decisions, and root cause analysis using LLMs — making on-call less painful.",
-      date: "2024",
-      readTime: "11 min"
-    }
-  ];
+  // ======= Articles from Medium RSS =======
+  var MEDIUM_FEED = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@gurpreet.singh_89';
 
-  function renderArticles() {
+  function stripHtml(html) {
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  function estimateReadTime(text) {
+    var words = text.split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / 200)) + ' min';
+  }
+
+  function formatDate(dateStr) {
+    var d = new Date(dateStr);
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
+
+  function extractFirstTag(categories) {
+    if (categories && categories.length > 0) return categories[0];
+    return 'Article';
+  }
+
+  function renderArticles(articles) {
     var grid = $('#articlesGrid');
-    if (articles.length === 0) {
+    grid.empty();
+    if (!articles || articles.length === 0) {
       grid.html('<div class="articles-empty"><i class="bx bx-pen"></i><p>Articles coming soon. Stay tuned.</p></div>');
       return;
     }
@@ -417,7 +390,38 @@
     });
   }
 
-  renderArticles();
+  // Show skeleton loaders for articles
+  (function() {
+    var grid = $('#articlesGrid');
+    for (var i = 0; i < 6; i++) {
+      grid.append('<div class="project-skeleton" style="height:220px;margin-bottom:24px;"></div>');
+    }
+  })();
+
+  // Fetch from Medium via rss2json
+  $.get(MEDIUM_FEED, function(data) {
+    if (data.status === 'ok' && data.items && data.items.length > 0) {
+      var articles = data.items.map(function(item) {
+        var plainText = stripHtml(item.description || item.content || '');
+        var excerpt = plainText.substring(0, 150).trim();
+        if (plainText.length > 150) excerpt += '...';
+        return {
+          title: item.title,
+          url: item.link,
+          tag: extractFirstTag(item.categories),
+          excerpt: excerpt,
+          date: formatDate(item.pubDate),
+          readTime: estimateReadTime(plainText)
+        };
+      });
+      renderArticles(articles);
+    } else {
+      renderArticles([]);
+    }
+  }).fail(function() {
+    // Fallback: show empty state
+    renderArticles([]);
+  });
 
   // Parallax scroll effect on sections
   $(window).on('scroll', function() {
