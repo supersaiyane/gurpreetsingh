@@ -285,17 +285,17 @@
     $('.tab-btn').removeClass('active');
     $('.tab-btn[data-tab="' + tab + '"]').addClass('active');
 
-    // Show/hide tab content
+    // Instantly scroll to top of tab bar BEFORE switching content
+    var scrollTarget = $('#tabNav').offset().top;
+    $('html, body').stop().scrollTop(scrollTarget);
+
+    // Now switch tab content
     $('.tab-content').removeClass('active');
     $('#tab-' + tab).addClass('active');
 
-    // Reset any stale transforms and re-init AOS
+    // Reset transforms and re-init AOS
     $('.section-title span').css('transform', 'none');
     setTimeout(function() { AOS.refresh(); }, 100);
-
-    // Scroll to top of tab content
-    var scrollTarget = $('#tabNav').offset().top;
-    $('html, body').animate({ scrollTop: scrollTarget }, 400, 'easeInOutExpo');
   }
 
   // Tab bar button click
