@@ -377,7 +377,7 @@
       return;
     }
     articles.forEach(function(article) {
-      var card = '<div class="article-card">' +
+      var card = '<div class="article-card" data-url="' + article.url + '">' +
         '<span class="article-tag">' + article.tag + '</span>' +
         '<h3 class="article-title"><a href="' + article.url + '" target="_blank" rel="noopener">' + article.title + '</a></h3>' +
         '<p class="article-excerpt">' + article.excerpt + '</p>' +
@@ -397,6 +397,12 @@
       grid.append('<div class="project-skeleton" style="height:220px;margin-bottom:24px;"></div>');
     }
   })();
+
+  // Click anywhere on article card to open in new tab
+  $(document).on('click', '.article-card', function() {
+    var url = $(this).data('url');
+    if (url) window.open(url, '_blank');
+  });
 
   // Fetch from Medium via rss2json
   $.get(MEDIUM_FEED, function(data) {
