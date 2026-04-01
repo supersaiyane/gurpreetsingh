@@ -69,7 +69,6 @@
     'skills': 'portfolio',
     'resume': 'portfolio',
     'testimonials': 'portfolio',
-    'contact': 'portfolio',
     'projects': 'projects'
   };
 
