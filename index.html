@@ -43,6 +43,7 @@
         <li><a href="#projects"><i class="bx bx-code-alt"></i> <span>Projects</span></a></li>
         <li><a href="#testimonials"><i class="bx bx-chat"></i> <span>Testimonials</span></a></li>
         <li><a href="#contact"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        <li><a href="#" class="tab-switch" data-tab="articles"><i class="bx bx-pen"></i> <span>Articles</span></a></li>
       </ul>
     </nav>
     <div class="fix-menu">
@@ -127,7 +128,56 @@
     </div>
   </section><!-- End Hero -->
 
+  <!-- ======= Tab Navigation ======= -->
+  <div class="tab-nav-wrapper" id="tabNav">
+    <div class="container">
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="portfolio"><i class="bx bx-briefcase"></i> Portfolio</button>
+        <button class="tab-btn" data-tab="articles"><i class="bx bx-pen"></i> Articles</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Tab: Portfolio ======= -->
+  <div class="tab-content active" id="tab-portfolio">
+
   <main id="main">
+
+    <!-- ======= Stats Counter ======= -->
+    <section id="stats" class="stats">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+              <div class="stat-number" data-count="14">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+              <div class="stat-number" data-count="169">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Open Source Repos</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+              <div class="stat-number" data-count="7">0</div>
+              <div class="stat-suffix"></div>
+              <div class="stat-label">Companies</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-suffix"></div>
+              <div class="stat-label">AWS Certifications</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Stats -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about" style="position:relative;overflow:hidden;">
@@ -672,6 +722,25 @@
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
+
+  </div><!-- End Tab: Portfolio -->
+
+  <!-- ======= Tab: Articles ======= -->
+  <div class="tab-content" id="tab-articles">
+    <section class="articles-section">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Articles</h2>
+          <span>Writings</span>
+          <p>Thoughts on SRE, Platform Engineering, Cloud Architecture, and building reliable systems at scale.</p>
+        </div>
+
+        <div class="articles-grid" id="articlesGrid">
+          <!-- Articles rendered from JS -->
+        </div>
+      </div>
+    </section>
+  </div><!-- End Tab: Articles -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

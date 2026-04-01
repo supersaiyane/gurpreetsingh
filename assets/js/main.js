@@ -315,6 +315,143 @@
     $('#latestGrid').html('<p style="color:#5a5a6e;text-align:center;width:100%;">Could not load latest repos.</p>');
   });
 
+  // ======= Tab Navigation =======
+  $('.tab-btn').on('click', function() {
+    var tab = $(this).data('tab');
+    $('.tab-btn').removeClass('active');
+    $(this).addClass('active');
+    $('.tab-content').removeClass('active');
+    $('#tab-' + tab).addClass('active');
+
+    // Re-init AOS for the new tab
+    AOS.refresh();
+
+    // Scroll to top of content
+    $('html, body').animate({ scrollTop: $('#tabNav').offset().top }, 400, 'easeInOutExpo');
+  });
+
+  // Sidebar link to Articles tab
+  $(document).on('click', '.tab-switch', function(e) {
+    e.preventDefault();
+    var tab = $(this).data('tab');
+    $('.tab-btn[data-tab="' + tab + '"]').trigger('click');
+  });
+
+  // ======= Stats Counter Animation =======
+  function animateCounters() {
+    $('.stat-number').each(function() {
+      var $this = $(this);
+      if ($this.data('animated')) return;
+      var target = parseInt($this.data('count'));
+      var duration = 1500;
+      var start = 0;
+      var startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        // Ease out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        $this.text(Math.floor(eased * target));
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          $this.text(target);
+        }
+      }
+      $this.data('animated', true);
+      requestAnimationFrame(step);
+    });
+  }
+
+  // Trigger counter when stats section is in view
+  if ($('#stats').length) {
+    var statsObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    statsObserver.observe(document.getElementById('stats'));
+  }
+
+  // ======= Articles =======
+  // Add your articles here. Each article is an object with title, url, tag, excerpt, date, readTime.
+  var articles = [
+    {
+      title: "SRE at Scale: How We Built an SLO Framework for Banking",
+      url: "https://medium.com/@gurpreet.singh_89",
+      tag: "SRE",
+      excerpt: "A deep dive into how we designed and implemented SLO frameworks across mission-critical banking platforms, balancing regulatory compliance with engineering velocity.",
+      date: "2025",
+      readTime: "8 min"
+    },
+    {
+      title: "From Monolith to Microservices: Lessons from MakeMyTrip",
+      url: "https://medium.com/@gurpreet.singh_89",
+      tag: "Architecture",
+      excerpt: "The real story of migrating high-traffic travel platforms from monolithic services to microservices on AWS — what worked, what didn't, and what we'd do differently.",
+      date: "2025",
+      readTime: "10 min"
+    },
+    {
+      title: "AIOps in Practice: Reducing MTTR with Intelligent Automation",
+      url: "https://medium.com/@gurpreet.singh_89",
+      tag: "AIOps",
+      excerpt: "How we leveraged LLMs and automated remediation to cut Mean Time To Recovery by 60% across distributed systems in regulated environments.",
+      date: "2025",
+      readTime: "7 min"
+    },
+    {
+      title: "FinOps for Engineers: A Practical Guide to Cloud Cost Optimization",
+      url: "https://medium.com/@gurpreet.singh_89",
+      tag: "FinOps",
+      excerpt: "Cloud cost optimization isn't just a finance problem. Here's how engineering teams can drive FinOps initiatives with data-driven decisions and automated guardrails.",
+      date: "2024",
+      readTime: "9 min"
+    },
+    {
+      title: "Building an Internal Developer Platform with Backstage",
+      url: "https://medium.com/@gurpreet.singh_89",
+      tag: "Platform Engineering",
+      excerpt: "Our journey building a Backstage-powered IDP with GitOps, guardrails, observability, and incident automation — making developers self-sufficient at scale.",
+      date: "2024",
+      readTime: "12 min"
+    },
+    {
+      title: "Kubernetes Auto-Remediation: Building a Self-Healing Platform",
+      url: "https://medium.com/@gurpreet.singh_89",
+      tag: "Kubernetes",
+      excerpt: "How we built a K8s DaemonSet that handles auto-remediation, scaling decisions, and root cause analysis using LLMs — making on-call less painful.",
+      date: "2024",
+      readTime: "11 min"
+    }
+  ];
+
+  function renderArticles() {
+    var grid = $('#articlesGrid');
+    if (articles.length === 0) {
+      grid.html('<div class="articles-empty"><i class="bx bx-pen"></i><p>Articles coming soon. Stay tuned.</p></div>');
+      return;
+    }
+    articles.forEach(function(article) {
+      var card = '<div class="article-card">' +
+        '<span class="article-tag">' + article.tag + '</span>' +
+        '<h3 class="article-title"><a href="' + article.url + '" target="_blank" rel="noopener">' + article.title + '</a></h3>' +
+        '<p class="article-excerpt">' + article.excerpt + '</p>' +
+        '<div class="article-meta">' +
+          '<span class="article-date">' + article.date + '</span>' +
+          '<span class="article-read-time"><i class="bx bx-time-five"></i> ' + article.readTime + '</span>' +
+        '</div>' +
+      '</div>';
+      grid.append(card);
+    });
+  }
+
+  renderArticles();
+
   // Parallax scroll effect on sections
   $(window).on('scroll', function() {
     var scrolled = $(this).scrollTop();
