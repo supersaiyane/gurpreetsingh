@@ -62,67 +62,17 @@
     setTimeout(runTerminalSequence, 800);
   });
 
-  // Smooth scroll for the navigation menu and links with .scrollto classes
-  $(document).on('click', '.nav-menu a, .scrollto', function(e) {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+  // Smooth scroll for links with .scrollto class
+  $(document).on('click', '.scrollto', function(e) {
+    if (this.hash) {
       var target = $(this.hash);
       if (target.length) {
         e.preventDefault();
-
-        var scrollto = target.offset().top;
-
         $('html, body').animate({
-          scrollTop: scrollto
-        }, 1500, 'easeInOutExpo');
-
-        if ($(this).parents('.nav-menu, .mobile-nav').length) {
-          $('.nav-menu .active, .mobile-nav .active').removeClass('active');
-          $(this).closest('li').addClass('active');
-        }
-
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-        }
+          scrollTop: target.offset().top
+        }, 1000, 'easeInOutExpo');
         return false;
       }
-    }
-  });
-
-  // Activate smooth scroll on page load with hash links in the url
-  $(document).ready(function() {
-    if (window.location.hash) {
-      var initial_nav = window.location.hash;
-      if ($(initial_nav).length) {
-        var scrollto = $(initial_nav).offset().top;
-        $('html, body').animate({
-          scrollTop: scrollto
-        }, 1500, 'easeInOutExpo');
-      }
-    }
-  });
-
-  $(document).on('click', '.mobile-nav-toggle', function(e) {
-    $('body').toggleClass('mobile-nav-active');
-    $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-  });
-
-  $(document).click(function(e) {
-    var container = $(".mobile-nav-toggle");
-    if (!container.is(e.target) && container.has(e.target).length === 0) {
-      if ($('body').hasClass('mobile-nav-active')) {
-        $('body').removeClass('mobile-nav-active');
-        $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-      }
-    }
-  });
-
-  // Navigation active state on scroll - only highlight Home when at top
-  $(window).on('scroll', function() {
-    var cur_pos = $(this).scrollTop();
-    if (cur_pos < 300) {
-      $('.nav-menu li').removeClass('active');
-      $(".nav-menu ul:first li:first").addClass('active');
     }
   });
 
@@ -311,39 +261,17 @@
     $('.tab-content').removeClass('active');
     $('#tab-' + tab).addClass('active');
 
-    // Update sidebar - highlight active tab link
-    $('.nav-menu li').removeClass('active');
-    $('.nav-menu .tab-switch[data-tab="' + tab + '"]').closest('li').addClass('active');
-
-    // Show/hide sub-links for active tab
-    $('.nav-menu .nav-sub').removeClass('visible');
-    $('.nav-menu .nav-sub[data-for-tab="' + tab + '"]').addClass('visible');
-
     // Reset any stale transforms and re-init AOS
     $('.section-title span').css('transform', 'none');
-    AOS.refresh();
-    var tabBarHeight = $('#tabNav').outerHeight();
+    setTimeout(function() { AOS.refresh(); }, 100);
+
+    // Scroll to top of tab content
     var scrollTarget = $('#tabNav').offset().top;
     $('html, body').animate({ scrollTop: scrollTarget }, 400, 'easeInOutExpo');
   }
 
-  // Show portfolio sub-links on page load (default active tab)
-  $('.nav-menu .nav-sub[data-for-tab="portfolio"]').addClass('visible');
-
-  // On page load, scroll to top
-  $(window).on('load', function() {
-    if (!window.location.hash) {
-      $('html, body').scrollTop(0);
-    }
-  });
-
   // Tab bar button click
-  $('.tab-btn').on('click', function() {
-    switchTab($(this).data('tab'));
-  });
-
-  // Sidebar link click
-  $(document).on('click', '.tab-switch', function(e) {
+  $(document).on('click', '.tab-btn', function(e) {
     e.preventDefault();
     switchTab($(this).data('tab'));
   });
