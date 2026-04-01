@@ -117,27 +117,13 @@
     }
   });
 
-  // Navigation active state on scroll
-  var nav_sections = $('section');
-  var main_nav = $('.nav-menu, #mobile-nav');
-
+  // Navigation active state on scroll - only highlight Home when at top
   $(window).on('scroll', function() {
-    var cur_pos = $(this).scrollTop() + 300;
-
-    nav_sections.each(function() {
-      var top = $(this).offset().top,
-        bottom = top + $(this).outerHeight();
-
-      if (cur_pos >= top && cur_pos <= bottom) {
-        if (cur_pos <= bottom) {
-          main_nav.find('li').removeClass('active');
-        }
-        main_nav.find('a[href="#' + $(this).attr('id') + '"]').parent('li').addClass('active');
-      }
-      if (cur_pos < 200) {
-        $(".nav-menu ul:first li:first").addClass('active');
-      }
-    });
+    var cur_pos = $(this).scrollTop();
+    if (cur_pos < 300) {
+      $('.nav-menu li').removeClass('active');
+      $(".nav-menu ul:first li:first").addClass('active');
+    }
   });
 
   // Back to top button
@@ -316,25 +302,33 @@
   });
 
   // ======= Tab Navigation =======
-  $('.tab-btn').on('click', function() {
-    var tab = $(this).data('tab');
+  function switchTab(tab) {
+    // Update tab buttons
     $('.tab-btn').removeClass('active');
-    $(this).addClass('active');
+    $('.tab-btn[data-tab="' + tab + '"]').addClass('active');
+
+    // Show/hide tab content
     $('.tab-content').removeClass('active');
     $('#tab-' + tab).addClass('active');
 
-    // Re-init AOS for the new tab
-    AOS.refresh();
+    // Update sidebar - only highlight active tab's link
+    $('.nav-menu li').removeClass('active');
+    $('.nav-menu .tab-switch[data-tab="' + tab + '"]').closest('li').addClass('active');
 
-    // Scroll to top of content
+    // Re-init AOS and scroll to tabs
+    AOS.refresh();
     $('html, body').animate({ scrollTop: $('#tabNav').offset().top }, 400, 'easeInOutExpo');
+  }
+
+  // Tab bar button click
+  $('.tab-btn').on('click', function() {
+    switchTab($(this).data('tab'));
   });
 
-  // Sidebar link to Articles tab
+  // Sidebar link click
   $(document).on('click', '.tab-switch', function(e) {
     e.preventDefault();
-    var tab = $(this).data('tab');
-    $('.tab-btn[data-tab="' + tab + '"]').trigger('click');
+    switchTab($(this).data('tab'));
   });
 
   // ======= Stats Counter Animation =======
