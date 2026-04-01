@@ -265,6 +265,38 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
+/* Nav sub-links: hidden by default, shown for active tab */
+.nav-menu .nav-sub {
+  display: none;
+  margin-left: 8px;
+}
+
+.nav-menu .nav-sub.visible {
+  display: block;
+}
+
+.nav-menu .nav-sub a {
+  height: 40px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.nav-menu .nav-sub a:hover,
+.nav-menu .nav-sub.active > a {
+  opacity: 1;
+}
+
+@media (min-width: 992px) {
+  .nav-menu .nav-sub a {
+    width: 40px;
+    height: 40px;
+  }
+  .nav-menu .nav-sub a:hover,
+  .nav-menu .nav-sub li:hover > a {
+    width: 100%;
+  }
+}
+
 /* Mobile Navigation */
 .mobile-nav-toggle {
   position: fixed;

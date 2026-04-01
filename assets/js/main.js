@@ -311,14 +311,21 @@
     $('.tab-content').removeClass('active');
     $('#tab-' + tab).addClass('active');
 
-    // Update sidebar - only highlight active tab's link
+    // Update sidebar - highlight active tab link
     $('.nav-menu li').removeClass('active');
     $('.nav-menu .tab-switch[data-tab="' + tab + '"]').closest('li').addClass('active');
+
+    // Show/hide sub-links for active tab
+    $('.nav-menu .nav-sub').removeClass('visible');
+    $('.nav-menu .nav-sub[data-for-tab="' + tab + '"]').addClass('visible');
 
     // Re-init AOS and scroll to tabs
     AOS.refresh();
     $('html, body').animate({ scrollTop: $('#tabNav').offset().top }, 400, 'easeInOutExpo');
   }
+
+  // Show portfolio sub-links on page load (default active tab)
+  $('.nav-menu .nav-sub[data-for-tab="portfolio"]').addClass('visible');
 
   // Tab bar button click
   $('.tab-btn').on('click', function() {
