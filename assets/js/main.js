@@ -285,17 +285,19 @@
     $('.tab-btn').removeClass('active');
     $('.tab-btn[data-tab="' + tab + '"]').addClass('active');
 
-    // Instantly scroll to top of tab bar BEFORE switching content
-    var scrollTarget = $('#tabNav').offset().top;
-    $('html, body').stop().scrollTop(scrollTarget);
-
-    // Now switch tab content
+    // Switch tab content
     $('.tab-content').removeClass('active');
     $('#tab-' + tab).addClass('active');
 
-    // Reset transforms and re-init AOS
+    // Reset transforms
     $('.section-title span').css('transform', 'none');
-    setTimeout(function() { AOS.refresh(); }, 100);
+
+    // Force scroll to top of tab bar after DOM updates
+    requestAnimationFrame(function() {
+      var scrollTarget = document.getElementById('tabNav').offsetTop;
+      window.scrollTo({ top: scrollTarget, behavior: 'instant' });
+      setTimeout(function() { AOS.refresh(); }, 50);
+    });
   }
 
   // Tab bar button click
