@@ -446,6 +446,12 @@
     $('#scrollProgress').css('width', progress + '%');
   });
 
+  // Accordion toggle
+  $(document).on('click', '.accordion-toggle', function() {
+    var $item = $(this).closest('.accordion-item');
+    $item.toggleClass('open');
+  });
+
   // Resume toggle - show/hide earlier experience
   $('#resumeToggle').on('click', function() {
     var $btn = $(this);
