@@ -452,17 +452,5 @@
     $item.toggleClass('open');
   });
 
-  // Resume toggle - show/hide earlier experience
-  $('#resumeToggle').on('click', function() {
-    var $btn = $(this);
-    var $section = $('#resumeEarlier');
-    $btn.toggleClass('active');
-    $section.toggleClass('expanded');
-    if ($btn.hasClass('active')) {
-      $btn.find('.toggle-text').text('Show Less');
-    } else {
-      $btn.find('.toggle-text').text('Show Earlier Experience');
-    }
-  });
 
 })(jQuery);
