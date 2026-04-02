@@ -120,6 +120,7 @@
       <div class="tab-nav">
         <button class="tab-btn active" data-tab="portfolio"><i class="bx bx-briefcase"></i> Portfolio</button>
         <button class="tab-btn" data-tab="projects"><i class="bx bx-code-alt"></i> Projects</button>
+        <button class="tab-btn" data-tab="explorations"><i class="bx bx-brain"></i> Explorations</button>
         <button class="tab-btn" data-tab="articles"><i class="bx bx-pen"></i> Articles</button>
       </div>
     </div>
@@ -673,6 +674,176 @@
       </div>
     </section>
   </div><!-- End Tab: Projects -->
+
+  <!-- ======= Tab: Explorations ======= -->
+  <div class="tab-content" id="tab-explorations">
+    <section class="explorations-section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Explorations</h2>
+          <span>AI/ML &amp; MLOps</span>
+          <p>Applied machine learning, MLOps pipelines, and AI-driven SRE — from fraud detection to self-healing platforms.</p>
+        </div>
+
+        <!-- AI/ML Projects -->
+        <h3 class="projects-subtitle"><i class="bx bx-chip"></i> AI/ML &amp; MLOps Projects</h3>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>End-to-End Fraud Detection Pipeline <small>AWS SageMaker + DataZone + EventBridge</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Architected a real-time fraud detection system leveraging SageMaker Pipelines for feature engineering, model training, and deployment.</li>
+              <li>Integrated DataZone for governed datasets and Kinesis Firehose for streaming ingestion, enabling sub-second detection of anomalous transactions.</li>
+              <li>Reduced false positives by 20%+ while maintaining 99.95% inference availability through multi-AZ SageMaker endpoints.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>Recommendation Engine <small>AWS Personalize + SageMaker</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Designed a recommendation engine using SageMaker + Amazon Personalize, optimized with Kinesis Data Streams for real-time user behavior ingestion.</li>
+              <li>Built CI/CD pipelines for ML models with CodePipeline + CodeBuild + SageMaker — cutting model release cycles from weeks to days.</li>
+              <li>Delivered 35% increase in user engagement metrics, directly driving customer conversion uplift.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>MLOps Automation &amp; CI/CD for ML Models <small>GitOps + SageMaker</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Implemented GitOps-style workflows for ML: data versioning, model versioning (SageMaker Model Registry), and deployment automation (ArgoCD + SageMaker endpoints).</li>
+              <li>Automated retraining triggers via EventBridge + Lambda, ensuring continuous model freshness from new production data.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>Monitoring &amp; Drift Detection <small>SageMaker Model Monitor + Prometheus</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Integrated model drift monitoring with SageMaker Model Monitor &amp; custom Prometheus/Grafana dashboards.</li>
+              <li>Proactively triggered model retraining jobs upon detecting data distribution shifts or degraded accuracy, reducing business risk from outdated models.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>Scaling ML Workloads <small>Step Functions + Spot Instances</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Optimized ML training with spot-enabled SageMaker training jobs, reducing costs by 40% while meeting SLA deadlines.</li>
+              <li>Leveraged Step Functions + SageMaker for orchestrating multi-stage workflows (data preprocessing &rarr; training &rarr; evaluation &rarr; deployment).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Business Impact -->
+        <h3 class="projects-subtitle mt-5"><i class="bx bx-trending-up"></i> Business Impact</h3>
+        <div class="glass-card" style="margin-bottom:40px;">
+          <ul style="padding-left:18px;margin:0;">
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Fraud detection platform safeguarded millions of transactions daily with error-budget aligned reliability.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Recommendation engine improved user retention and revenue through hyper-personalized experiences.</li>
+          </ul>
+        </div>
+
+        <!-- Key Engagements -->
+        <h3 class="projects-subtitle"><i class="bx bx-rocket"></i> Key Engagements</h3>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="glass-card" style="margin-bottom:16px;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">Cloud &amp; Platform Transformation</h4>
+              <ul style="padding-left:18px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Created and implemented the company's cloud and DevOps transformation strategy, enhancing operational agility and scalability.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Trained and mentored 80+ engineers in cloud, DevOps, and platform engineering best practices, boosting team productivity by 30%.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Automated 100+ CI/CD pipelines, Kubernetes clusters, and cloud infrastructure deployments, achieving 92% operational efficiency.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Reduced enterprise cloud spends by 30% through FinOps-driven cost governance frameworks.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="glass-card" style="margin-bottom:16px;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">Architecture &amp; Reliability</h4>
+              <ul style="padding-left:18px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Re-architected legacy monolithic infrastructures into microservices-based distributed systems, improving system update agility by 50%.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Improved platform performance by 70% post-transformation, driving better customer experience and system resilience.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Drove initiatives to enhance SLO achievement, reducing MTTR by 35% across critical services.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Designed and deployed a Covid Vaccination Registration Platform for Indian and international governments on Azure under aggressive timelines.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategic Leadership -->
+        <h3 class="projects-subtitle mt-4"><i class="bx bx-target-lock"></i> Strategic &amp; Executive Leadership</h3>
+
+        <div class="glass-card" style="margin-bottom:40px;">
+          <ul style="padding-left:18px;margin:0;">
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Orchestrated multi-quarter cloud strategy and platform engineering roadmaps, aligning with organizational OKRs, security mandates, and business KPIs.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Built and scaled global engineering capability by mentoring 80+ engineers across US-IND-EMEA regions; instilled SRE culture through hands-on coaching and blameless postmortems.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Partnered with cross-functional leadership (product, security, compliance, finance) to shape investment decisions, drive FinOps governance, and model infrastructure capacity.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Owned reliability and incident response programs for mission-critical workloads; codified DR runbooks, led Chaos SRE programs, and reduced MTTR by 35%.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Operated as a strategic advisor bridging product, security, and business goals, while shaping architectural governance and platform modernization efforts.</li>
+          </ul>
+        </div>
+
+        <!-- Currently Exploring -->
+        <h3 class="projects-subtitle"><i class="bx bx-search-alt"></i> Currently Exploring: LLMs, RAG, ML on SRE</h3>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+            <div class="glass-card" style="height:100%;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--accent-2);margin-bottom:10px;">Predictive &amp; Anomaly Detection</h4>
+              <ul style="padding-left:16px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Anomaly detection on metrics/logs with Isolation Forest or auto-encoders to catch issues before threshold alerts fire.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Capacity forecasting with ARIMA/LSTM to drive autoscaler targets and FinOps rightsizing.</li>
+                <li style="color:var(--text-secondary);font-size:13px;">SLO burn-rate prediction models that forecast error-budget exhaustion and trigger early rollbacks.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card" style="height:100%;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--accent-2);margin-bottom:10px;">LLM &amp; RAG Applications</h4>
+              <ul style="padding-left:16px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">RAG-powered ChatOps bot (LangChain + Qdrant) that answers incident questions from runbooks/RCA docs in Slack.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">LLM-generated RCA summaries that condense logs, timeline, and PagerDuty notes into post-mortems.</li>
+                <li style="color:var(--text-secondary);font-size:13px;">LLM-generated chaos experiments (LitmusChaos) to broaden failure-mode coverage without manual scripting.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card" style="height:100%;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--accent-2);margin-bottom:10px;">Automation &amp; Self-Healing</h4>
+              <ul style="padding-left:16px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Self-healing workflows: ML predicts failure &rarr; Argo Workflows / AWS SSM runs automated remediation.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Root-cause clustering of trace IDs &amp; log fingerprints (DBSCAN, t-SNE) to group correlated failures fast.</li>
+                <li style="color:var(--text-secondary);font-size:13px;">Reinforcement-learning alert tuning that adapts thresholds based on noise vs. signal feedback.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- End Tab: Explorations -->
 
   <!-- ======= Tab: Articles ======= -->
   <div class="tab-content" id="tab-articles">
