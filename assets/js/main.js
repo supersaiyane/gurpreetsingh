@@ -46,7 +46,11 @@
       function(next) { showOutput('#termLine7', function() { typeText($('#termLine7 .terminal-text'), next); }); },
       function(next) { showOutput('#termLine8', next); },
       function(next) { showOutput('#termCursor', next); },
-      function() { $('#heroCta').animate({ opacity: 1 }, 600); }
+      function() {
+        $('#heroCta').animate({ opacity: 1 }, 600);
+        // Enable interactive terminal after animation
+        setTimeout(enableInteractiveTerminal, 800);
+      }
     ];
 
     var i = 0;
@@ -65,6 +69,7 @@
   // Map sections to their parent tab
   var sectionTabMap = {
     'stats': 'portfolio',
+    'sre-dashboard': 'portfolio',
     'about': 'portfolio',
     'skills': 'portfolio',
     'resume': 'portfolio',
@@ -457,6 +462,216 @@
     var $item = $(this).closest('.accordion-item');
     $item.toggleClass('open');
   });
+
+  // ======= Interactive Terminal =======
+  function enableInteractiveTerminal() {
+    var $cursor = $('#termCursor');
+    var $interactive = $('#termInteractive');
+    var $input = $('#termInput');
+    var $output = $('#termOutput');
+    var $termBody = $('.terminal-body');
+
+    // Hide the blinking cursor line, show interactive area
+    $cursor.hide();
+    $interactive.show();
+    $input.attr('placeholder', 'type help...');
+
+    // Click anywhere on terminal to focus input
+    $('.terminal').on('click', function() {
+      $input.focus();
+    });
+
+    var commandHistory = [];
+    var historyIndex = -1;
+
+    var commands = {
+      'help': function() {
+        return [
+          '<span style="color:var(--accent-2);font-weight:700;">Available commands:</span>',
+          '  whoami         — who is Gurpreet',
+          '  ls projects    — featured repositories',
+          '  ls skills      — technical skills',
+          '  cat about.txt  — short bio',
+          '  uptime         — career runtime',
+          '  ping reliability — system status',
+          '  sudo hire gurpreet — try it ;)',
+          '  clear          — clear terminal',
+          '  help           — show this message'
+        ].join('\n');
+      },
+      'whoami': function() {
+        return 'Gurpreet Singh - Senior Staff SRE @ NatWest Group';
+      },
+      'ls projects': function() {
+        var repos = [
+          'IDP_Backstage', 'auto-agent-k8s', 'Samaira',
+          'fraud-detection-mlops', 'gitops_aws', 'FinOps',
+          'airflow', 'smart_llm_gateway', 'rag-llm', 'SRE'
+        ];
+        return repos.join('  ');
+      },
+      'ls skills': function() {
+        var skills = [
+          'SRE', 'Kubernetes', 'AWS', 'GCP', 'Azure', 'Terraform',
+          'Observability', 'AIOps', 'FinOps', 'DevSecOps',
+          'GitOps', 'Python', 'Go', 'System Design'
+        ];
+        return skills.join('  ');
+      },
+      'cat about.txt': function() {
+        return '14+ years building reliable, scalable systems at enterprise scale.\nFrom IBM trainee to Senior Staff SRE at one of the UK\'s largest banks.\nI turn chaos into calm — complex distributed systems into\npredictable, autonomous platforms.';
+      },
+      'uptime': function() {
+        return '14+ years, 7 companies, and counting...';
+      },
+      'ping reliability': function() {
+        return '99.99% — all systems operational';
+      },
+      'sudo hire gurpreet': function() {
+        return '<span style="color:var(--accent-2);">Access granted.</span> Sending offer letter... Just kidding.\nBut seriously, let\'s talk → <a href="mailto:senghgurpreett@gmail.com" style="color:var(--accent-1);">senghgurpreett@gmail.com</a>';
+      },
+      'clear': function() {
+        return '__CLEAR__';
+      }
+    };
+
+    function scrollTerminal() {
+      $termBody.scrollTop($termBody[0].scrollHeight);
+    }
+
+    function processCommand(cmd) {
+      var trimmed = cmd.trim().toLowerCase();
+      if (!trimmed) return;
+
+      commandHistory.unshift(trimmed);
+      historyIndex = -1;
+
+      // Add the command echo
+      var cmdLine = '<div class="terminal-line"><span class="terminal-prompt">$</span> ' + $('<span>').text(cmd.trim()).html() + '</div>';
+      $output.append(cmdLine);
+
+      // Look up command
+      var result;
+      if (commands[trimmed]) {
+        result = commands[trimmed]();
+      } else {
+        result = '<span style="color:#ff5f57;">' + $('<span>').text(trimmed).html() + ': command not found.</span> Type \'help\' for available commands.';
+      }
+
+      if (result === '__CLEAR__') {
+        $output.empty();
+        // Also hide the original terminal lines
+        $('#termLine1, #termLine2, #termLine3, #termLine4, #termLine5, #termLine6, #termLine7, #termLine8').hide();
+      } else {
+        var outputLine = '<div class="terminal-line terminal-output" style="display:block;padding-left:22px;white-space:pre-wrap;">' + result + '</div>';
+        $output.append(outputLine);
+      }
+
+      scrollTerminal();
+    }
+
+    $input.on('keydown', function(e) {
+      if (e.key === 'Enter') {
+        var cmd = $input.val();
+        $input.val('');
+        processCommand(cmd);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (historyIndex < commandHistory.length - 1) {
+          historyIndex++;
+          $input.val(commandHistory[historyIndex]);
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (historyIndex > 0) {
+          historyIndex--;
+          $input.val(commandHistory[historyIndex]);
+        } else {
+          historyIndex = -1;
+          $input.val('');
+        }
+      }
+    });
+  }
+
+  // ======= SRE Dashboard Animations =======
+  function animateSREDashboard() {
+    // Animate counters
+    $('.sre-counter').each(function() {
+      var $el = $(this);
+      if ($el.data('animated')) return;
+      $el.data('animated', true);
+
+      var target = parseFloat($el.data('target'));
+      var decimals = parseInt($el.data('decimals')) || 0;
+      var duration = 2000;
+      var startTime = null;
+
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = Math.min((timestamp - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = eased * target;
+        if (decimals > 0) {
+          $el.text(current.toFixed(decimals));
+        } else {
+          $el.text(Math.floor(current).toLocaleString());
+        }
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          if (decimals > 0) {
+            $el.text(target.toFixed(decimals));
+          } else {
+            $el.text(target.toLocaleString());
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    });
+
+    // Animate ring charts
+    $('.sre-ring-fill').each(function() {
+      var $ring = $(this);
+      if ($ring.hasClass('animated')) return;
+      var percent = parseFloat($ring.data('percent'));
+      var circumference = 326.73; // 2 * PI * 52
+      var offset = circumference - (percent / 100) * circumference;
+      $ring.css('--target-offset', offset + 'px');
+      $ring.addClass('animated');
+    });
+
+    // Animate bars
+    $('.sre-metric-bar').each(function() {
+      var $bar = $(this);
+      if ($bar.hasClass('animated')) return;
+      var width = parseFloat($bar.data('width'));
+      $bar.css('--target-width', width + '%');
+      $bar.addClass('animated');
+    });
+
+    // Animate progress fills
+    $('.sre-metric-progress-fill').each(function() {
+      var $fill = $(this);
+      if ($fill.hasClass('animated')) return;
+      var width = parseFloat($fill.data('width'));
+      $fill.css('--target-width', width + '%');
+      $fill.addClass('animated');
+    });
+  }
+
+  // Trigger SRE dashboard animation when scrolled into view
+  if ($('#sre-dashboard').length) {
+    var sreObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateSREDashboard();
+          sreObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    sreObserver.observe(document.getElementById('sre-dashboard'));
+  }
 
 
 })(jQuery);

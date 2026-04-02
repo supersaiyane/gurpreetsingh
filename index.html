@@ -31,6 +31,15 @@
 </head>
 
 <body>
+  <!-- SVG gradient defs for SRE dashboard rings -->
+  <svg style="position:absolute;width:0;height:0;">
+    <defs>
+      <linearGradient id="sreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#6c63ff;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#00d4aa;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+  </svg>
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- ======= Social Links (right side) ======= -->
@@ -87,6 +96,13 @@
             <div class="terminal-line" id="termCursor" style="display:none;">
               <span class="terminal-prompt">$</span>
               <span class="terminal-cursor">_</span>
+            </div>
+            <div class="terminal-interactive" id="termInteractive" style="display:none;">
+              <div id="termOutput"></div>
+              <div class="terminal-input-line">
+                <span class="terminal-prompt">$</span>
+                <input type="text" id="termInput" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+              </div>
             </div>
           </div>
         </div>
@@ -166,6 +182,84 @@
         </div>
       </div>
     </section><!-- End Stats -->
+
+    <!-- ======= SRE Dashboard Section ======= -->
+    <section id="sre-dashboard" class="sre-dashboard">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Dashboard</h2>
+          <span>SRE Metrics</span>
+          <p>Real-time reliability metrics from the trenches. Because what gets measured, gets improved.</p>
+        </div>
+        <div class="row sre-metrics-grid">
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="sre-metric-card">
+              <div class="sre-metric-ring-wrap">
+                <svg class="sre-ring" viewBox="0 0 120 120">
+                  <circle class="sre-ring-bg" cx="60" cy="60" r="52" />
+                  <circle class="sre-ring-fill" cx="60" cy="60" r="52" data-percent="99.99" />
+                </svg>
+                <div class="sre-ring-value"><span class="sre-counter" data-target="99.99" data-decimals="2">0</span>%</div>
+              </div>
+              <div class="sre-metric-label">System Uptime</div>
+              <div class="sre-metric-sublabel">Last 365 days</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="sre-metric-card">
+              <div class="sre-metric-bar-wrap">
+                <div class="sre-metric-bar-icon"><i class="bx bx-timer"></i></div>
+                <div class="sre-metric-bar-container">
+                  <div class="sre-metric-bar" data-width="15"></div>
+                </div>
+              </div>
+              <div class="sre-metric-big">&lt; <span class="sre-counter" data-target="5" data-decimals="0">0</span> min</div>
+              <div class="sre-metric-label">MTTR</div>
+              <div class="sre-metric-sublabel">Mean Time to Recovery</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="sre-metric-card">
+              <div class="sre-metric-big sre-metric-big-counter"><span class="sre-counter" data-target="2847" data-decimals="0">0</span>+</div>
+              <div class="sre-metric-label">Deployments</div>
+              <div class="sre-metric-sublabel">Zero-downtime releases</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="400">
+            <div class="sre-metric-card">
+              <div class="sre-metric-progress-wrap">
+                <div class="sre-metric-progress-bar">
+                  <div class="sre-metric-progress-fill" data-width="98.2"></div>
+                </div>
+              </div>
+              <div class="sre-metric-big"><span class="sre-counter" data-target="98.2" data-decimals="1">0</span>%</div>
+              <div class="sre-metric-label">Error Budget</div>
+              <div class="sre-metric-sublabel">Remaining this quarter</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="500">
+            <div class="sre-metric-card">
+              <div class="sre-metric-big sre-metric-big-counter"><span class="sre-counter" data-target="500" data-decimals="0">0</span>+</div>
+              <div class="sre-metric-label">Incidents Resolved</div>
+              <div class="sre-metric-sublabel">P1-P3 across all services</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="600">
+            <div class="sre-metric-card">
+              <div class="sre-metric-ring-wrap">
+                <svg class="sre-ring" viewBox="0 0 120 120">
+                  <circle class="sre-ring-bg" cx="60" cy="60" r="52" />
+                  <circle class="sre-ring-fill sre-ring-fill-green" cx="60" cy="60" r="52" data-percent="99.95" />
+                </svg>
+                <div class="sre-ring-value"><span class="sre-counter" data-target="99.95" data-decimals="2">0</span>%</div>
+              </div>
+              <div class="sre-metric-label">SLO Compliance</div>
+              <div class="sre-metric-sublabel">Across all service tiers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End SRE Dashboard -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">

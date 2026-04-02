@@ -2276,4 +2276,249 @@ section {
     height: 50px;
     min-height: 30px;
   }
+
+  /* SRE Dashboard mobile */
+  .sre-metric-card {
+    padding: 20px !important;
+  }
+  .sre-metric-big {
+    font-size: 28px !important;
+  }
+  .sre-ring-value {
+    font-size: 14px !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Interactive Terminal
+--------------------------------------------------------------*/
+.terminal-interactive {
+  margin-top: 4px;
+}
+
+#termOutput .terminal-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.terminal-input {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 0;
+  line-height: 2;
+  caret-color: var(--accent-2);
+}
+
+.terminal-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .terminal-input {
+    font-size: 13px;
+  }
+}
+
+.terminal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/*--------------------------------------------------------------
+# SRE Dashboard
+--------------------------------------------------------------*/
+.sre-dashboard {
+  background: var(--bg-primary);
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.sre-metric-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.sre-metric-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.sre-metric-card:hover {
+  border-color: rgba(108, 99, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.sre-metric-card:hover::before {
+  opacity: 1;
+}
+
+/* Ring Charts */
+.sre-metric-ring-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+}
+
+.sre-ring {
+  width: 120px;
+  height: 120px;
+  transform: rotate(-90deg);
+}
+
+.sre-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 8;
+}
+
+.sre-ring-fill {
+  fill: none;
+  stroke: url(#sreGradient);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 326.73;
+  stroke-dashoffset: 326.73;
+  transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sre-ring-fill.sre-ring-fill-green {
+  stroke: var(--accent-2);
+}
+
+.sre-ring-fill.animated {
+  stroke-dashoffset: var(--target-offset);
+}
+
+.sre-ring-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Metric Labels */
+.sre-metric-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 8px;
+}
+
+.sre-metric-sublabel {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Big number display */
+.sre-metric-big {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  font-weight: 900;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.sre-metric-big-counter {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+/* MTTR Bar */
+.sre-metric-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.sre-metric-bar-icon {
+  font-size: 28px;
+  color: var(--accent-2);
+}
+
+.sre-metric-bar-container {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sre-metric-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-gradient);
+  border-radius: 4px;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sre-metric-bar.animated {
+  width: var(--target-width);
+}
+
+/* Error Budget Progress Bar */
+.sre-metric-progress-wrap {
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.sre-metric-progress-bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.sre-metric-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-gradient);
+  border-radius: 5px;
+  transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sre-metric-progress-fill.animated {
+  width: var(--target-width);
 }
