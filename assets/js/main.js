@@ -299,24 +299,38 @@
   });
 
   function switchTab(tab) {
-    // 1. Switch tab content
+    var $oldTab = $('.tab-content.active');
+    var $newTab = $('#tab-' + tab);
+
+    // Update buttons
     $('.tab-btn').removeClass('active');
     $('.tab-btn[data-tab="' + tab + '"]').addClass('active');
-    $('.tab-content').removeClass('active');
-    $('#tab-' + tab).addClass('active');
 
-    // 2. Reset transforms
-    $('.section-title span').css('transform', 'none');
+    // Crossfade: fade out old
+    $oldTab.removeClass('visible');
 
-    // 3. Force scroll to where tabs begin (hero bottom)
-    window.scrollTo(0, tabStartPosition);
+    // After fade out, swap and fade in
+    setTimeout(function() {
+      $oldTab.removeClass('active');
+      $newTab.addClass('active');
 
-    // 4. Ensure position sticks after reflow
-    requestAnimationFrame(function() {
+      // Scroll to tab start
       window.scrollTo(0, tabStartPosition);
-      AOS.refresh();
-    });
+
+      // Reset transforms
+      $('.section-title span').css('transform', 'none');
+
+      // Trigger fade in on next frame
+      requestAnimationFrame(function() {
+        $newTab.addClass('visible');
+        window.scrollTo(0, tabStartPosition);
+        AOS.refresh();
+      });
+    }, 300);
   }
+
+  // Make default tab visible on load
+  $('.tab-content.active').addClass('visible');
 
   // Tab bar button click
   $(document).on('click', '.tab-btn', function(e) {
@@ -528,7 +542,8 @@
         return '99.99% — all systems operational';
       },
       'sudo hire gurpreet': function() {
-        return '<span style="color:var(--accent-2);">Access granted.</span> Sending offer letter... Just kidding.\nBut seriously, let\'s talk → <a href="mailto:senghgurpreett@gmail.com" style="color:var(--accent-1);">senghgurpreett@gmail.com</a>';
+        setTimeout(function() { $(document).trigger('easter-trigger'); }, 500);
+        return '<span style="color:var(--accent-2);">Access granted.</span> Initiating recruitment sequence...';
       },
       'clear': function() {
         return '__CLEAR__';
@@ -674,4 +689,116 @@
   }
 
 
+  // ======= Custom Cursor =======
+  var $glow = $('#cursorGlow');
+  var $dot = $('#cursorDot');
+  var mouseX = 0, mouseY = 0;
+  var glowX = 0, glowY = 0;
+
+  // Only on non-touch devices
+  if (window.matchMedia('(hover: hover)').matches) {
+    $(document).on('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      $dot.css({ left: mouseX, top: mouseY });
+      if (!$dot.hasClass('active')) {
+        $dot.addClass('active');
+        $glow.addClass('active');
+      }
+    });
+
+    // Smooth glow follow
+    function animateGlow() {
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+      $glow.css({ left: glowX, top: glowY });
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // Enlarge dot on hoverable elements
+    $(document).on('mouseenter', 'a, button, .tab-btn, .project-card, .article-card, .accordion-toggle, .resume-item', function() {
+      $dot.addClass('hovering');
+    }).on('mouseleave', 'a, button, .tab-btn, .project-card, .article-card, .accordion-toggle, .resume-item', function() {
+      $dot.removeClass('hovering');
+    });
+
+    // Hide on mouse leave window
+    $(document).on('mouseleave', function() {
+      $dot.removeClass('active');
+      $glow.removeClass('active');
+    });
+  }
+
+  // ======= Easter Egg: Konami Code =======
+  var konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // up up down down left right left right B A
+  var konamiProgress = 0;
+
+  function showEasterEgg() {
+    var $overlay = $('#easterOverlay');
+    $overlay.addClass('active');
+
+    // Confetti burst
+    var colors = ['#6c63ff', '#00d4aa', '#ff5f57', '#febc2e', '#28c840', '#fff'];
+    for (var i = 0; i < 60; i++) {
+      var $conf = $('<div class="confetti"></div>');
+      $conf.css({
+        left: Math.random() * 100 + 'vw',
+        top: -10,
+        background: colors[Math.floor(Math.random() * colors.length)],
+        width: (Math.random() * 8 + 4) + 'px',
+        height: (Math.random() * 8 + 4) + 'px',
+        animationDuration: (Math.random() * 2 + 2) + 's',
+        animationDelay: (Math.random() * 1) + 's'
+      });
+      $('body').append($conf);
+      setTimeout(function() { $conf.remove(); }, 5000);
+    }
+  }
+
+  $(document).on('keydown', function(e) {
+    if (e.keyCode === konamiSequence[konamiProgress]) {
+      konamiProgress++;
+      if (konamiProgress === konamiSequence.length) {
+        konamiProgress = 0;
+        showEasterEgg();
+      }
+    } else {
+      konamiProgress = 0;
+    }
+  });
+
+  // Close easter egg
+  $(document).on('click', '#easterClose, .easter-overlay', function(e) {
+    if (e.target === this) {
+      $('#easterOverlay').removeClass('active');
+    }
+  });
+
+  // ======= Enhanced sudo hire gurpreet =======
+  // Override the terminal command to also trigger the easter egg
+  var originalSudoHire = null;
+
 })(jQuery);
+
+// Hook into sudo hire after terminal is ready
+$(document).on('easter-trigger', function() {
+  var $overlay = $('#easterOverlay');
+  $overlay.addClass('active');
+
+  var colors = ['#6c63ff', '#00d4aa', '#ff5f57', '#febc2e', '#28c840', '#fff'];
+  for (var i = 0; i < 60; i++) {
+    var $conf = $('<div class="confetti"></div>');
+    $conf.css({
+      left: Math.random() * 100 + 'vw',
+      top: -10,
+      background: colors[Math.floor(Math.random() * colors.length)],
+      width: (Math.random() * 8 + 4) + 'px',
+      height: (Math.random() * 8 + 4) + 'px',
+      animationDuration: (Math.random() * 2 + 2) + 's',
+      animationDelay: (Math.random() * 1) + 's'
+    });
+    $('body').append($conf);
+    setTimeout(function() { $conf.remove(); }, 5000);
+  }
+});
