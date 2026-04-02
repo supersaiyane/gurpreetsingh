@@ -2101,27 +2101,26 @@ section {
   .tab-nav {
     gap: 4px;
     flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 10px;
-    justify-content: flex-start;
+    padding: 0 8px;
+    justify-content: center;
   }
 
   .tab-btn {
-    padding: 8px 16px;
-    font-size: 11px;
+    padding: 6px 12px;
+    font-size: 10px;
     white-space: nowrap;
     flex-shrink: 0;
-    gap: 5px;
+    gap: 4px;
     letter-spacing: 0;
+    border-radius: 16px;
   }
 
   .tab-btn i {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .tab-nav-wrapper {
-    padding: 8px 0;
+    padding: 6px 0;
   }
 
   /* Back to top mobile */
