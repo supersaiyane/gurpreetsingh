@@ -777,16 +777,38 @@
     });
   }
 
-  // ======= Photo Rotator =======
+  // ======= Photo Rotator (rapid shuffle → pause on random → loop) =======
   (function() {
     var $photos = $('.photo-slide');
     if ($photos.length <= 1) return;
     var current = 0;
-    setInterval(function() {
-      $photos.eq(current).removeClass('active');
-      current = (current + 1) % $photos.length;
+    var shuffleTimer;
+
+    function showPhoto(index) {
+      $photos.removeClass('active');
+      current = index;
       $photos.eq(current).addClass('active');
-    }, 10000);
+    }
+
+    function startCycle() {
+      var count = 0;
+      // Rapid shuffle: change every 500ms for 5 seconds (10 changes)
+      shuffleTimer = setInterval(function() {
+        count++;
+        showPhoto((current + 1) % $photos.length);
+        if (count >= 10) {
+          clearInterval(shuffleTimer);
+          // Stop on a random photo
+          var randomIdx = Math.floor(Math.random() * $photos.length);
+          showPhoto(randomIdx);
+          // Pause for 5 seconds, then restart cycle
+          setTimeout(startCycle, 5000);
+        }
+      }, 500);
+    }
+
+    // Start after initial 5 second pause on first photo
+    setTimeout(startCycle, 5000);
   })();
 
   // ======= Keyboard Shortcuts (1-4 for tabs) =======
