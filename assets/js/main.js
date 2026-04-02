@@ -138,8 +138,10 @@
   // Init AOS
   function aos_init() {
     AOS.init({
-      duration: 1000,
-      once: true
+      duration: 800,
+      once: true,
+      offset: 60,
+      easing: 'ease-out-cubic'
     });
   }
 
@@ -436,38 +438,12 @@
     renderArticles([]);
   });
 
-  // Parallax scroll effect on sections
+  // Scroll progress bar
   $(window).on('scroll', function() {
     var scrolled = $(this).scrollTop();
-
-    // Parallax for ambient blobs
-    $('.ambient-blob-1').css('transform', 'translateY(' + (scrolled * 0.04) + 'px)');
-    $('.ambient-blob-2').css('transform', 'translateY(' + (scrolled * -0.03) + 'px)');
-
-    // Scroll progress bar
     var docHeight = $(document).height() - $(window).height();
     var progress = (scrolled / docHeight) * 100;
     $('#scrollProgress').css('width', progress + '%');
-  });
-
-  // Water ripple effect on click
-  $(document).on('click', 'section', function(e) {
-    var $section = $(this);
-    var ripple = $('<div class="ripple"></div>');
-    var size = Math.max($section.outerWidth(), $section.outerHeight());
-    var x = e.pageX - $section.offset().left - size / 2;
-    var y = e.pageY - $section.offset().top - size / 2;
-
-    // Ensure section has ripple container
-    if (!$section.find('.ripple-container').length) {
-      $section.css('position', 'relative');
-      $section.append('<div class="ripple-container"></div>');
-    }
-
-    ripple.css({ width: size, height: size, left: x, top: y });
-    $section.find('.ripple-container').append(ripple);
-
-    setTimeout(function() { ripple.remove(); }, 2000);
   });
 
   // Resume toggle - show/hide earlier experience
