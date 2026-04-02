@@ -178,123 +178,102 @@
   </div>
 
   <script>
-    var termBody = document.getElementById('termBody');
-    var termOutput = document.getElementById('termOutput');
-    var termInput = document.getElementById('termInput');
-    var history = [];
-    var histIdx = -1;
+    document.addEventListener('DOMContentLoaded', function() {
+      var termBody = document.getElementById('termBody');
+      var termOutput = document.getElementById('termOutput');
+      var termInput = document.getElementById('termInput');
+      var cmdHistory = [];
+      var histIdx = -1;
 
-    document.getElementById('terminal').addEventListener('click', function() {
-      termInput.focus();
-    });
+      document.getElementById('terminal').addEventListener('click', function() {
+        termInput.focus();
+      });
 
-    var commands = {
-      'help': function() {
-        return [
-          '<span style="color:#00d4aa;font-weight:700;">Available commands:</span>',
-          '  home         — go to homepage',
-          '  whoami       — who is Gurpreet',
-          '  ls           — list pages',
-          '  uptime       — career runtime',
-          '  sudo hire gurpreet — try it ;)',
-          '  clear        — clear terminal',
-          '  help         — show this message'
-        ].join('\n');
-      },
-      'home': function() {
-        appendOutput('<span style="color:#00d4aa;">Redirecting to homepage...</span>');
-        setTimeout(function() { window.location.href = 'index.html'; }, 800);
-        return null;
-      },
-      'cd home': function() { return commands['home'](); },
-      'cd /': function() { return commands['home'](); },
-      'cd ~': function() { return commands['home'](); },
-      'go home': function() { return commands['home'](); },
-      'exit': function() { return commands['home'](); },
-      'ls': function() {
-        return '<a href="index.html">index.html</a>  <a href="index.html#tab-portfolio">portfolio</a>  <a href="index.html#tab-projects">projects</a>  <a href="index.html#tab-articles">articles</a>';
-      },
-      'whoami': function() {
-        return 'Gurpreet Singh - Senior Staff SRE @ NatWest Group';
-      },
-      'uptime': function() {
-        return '14+ years, 7 companies, and counting...';
-      },
-      'sudo hire gurpreet': function() {
-        return '<span style="color:#00d4aa;">Access granted.</span> Let\'s talk → <a href="mailto:senghgurpreett@gmail.com" style="color:#6c63ff;">senghgurpreett@gmail.com</a>';
-      },
-      'clear': function() {
-        return '__CLEAR__';
+      function escapeHtml(str) {
+        var tmp = document.createElement('span');
+        tmp.textContent = str;
+        return tmp.innerHTML;
       }
-    };
 
-    function appendOutput(html) {
-      var div = document.createElement('div');
-      div.className = 'terminal-line output';
-      div.style.whiteSpace = 'pre-wrap';
-      div.innerHTML = html;
-      termOutput.appendChild(div);
-      termBody.scrollTop = termBody.scrollHeight;
-    }
+      function scrollToBottom() {
+        termBody.scrollTop = termBody.scrollHeight;
+      }
 
-    function appendCmd(text) {
-      var div = document.createElement('div');
-      div.className = 'terminal-line';
-      div.innerHTML = '<span class="prompt">$</span><span class="cmd">' + escapeHtml(text) + '</span>';
-      termOutput.appendChild(div);
-    }
+      function appendLine(html, className) {
+        var div = document.createElement('div');
+        div.className = 'terminal-line ' + (className || '');
+        div.style.whiteSpace = 'pre-wrap';
+        div.innerHTML = html;
+        termOutput.appendChild(div);
+        scrollToBottom();
+      }
 
-    function escapeHtml(str) {
-      var tmp = document.createElement('span');
-      tmp.textContent = str;
-      return tmp.innerHTML;
-    }
+      function processCommand(cmd) {
+        var trimmed = cmd.trim().toLowerCase();
+        if (!trimmed) return;
 
-    function processCommand(cmd) {
-      var trimmed = cmd.trim().toLowerCase();
-      if (!trimmed) return;
+        cmdHistory.unshift(trimmed);
+        histIdx = -1;
 
-      history.unshift(trimmed);
-      histIdx = -1;
+        // Echo the command
+        appendLine('<span class="prompt">$</span><span class="cmd"> ' + escapeHtml(cmd.trim()) + '</span>');
 
-      appendCmd(cmd.trim());
-
-      var handler = commands[trimmed];
-      if (handler) {
-        var result = handler();
-        if (result === '__CLEAR__') {
+        // Process
+        if (trimmed === 'help') {
+          appendLine(
+            '<span style="color:#00d4aa;font-weight:700;">Available commands:</span>\n' +
+            '  home              go to homepage\n' +
+            '  whoami            who is Gurpreet\n' +
+            '  ls                list pages\n' +
+            '  uptime            career runtime\n' +
+            '  sudo hire gurpreet   try it ;)\n' +
+            '  clear             clear terminal\n' +
+            '  help              show this message',
+            'output'
+          );
+        } else if (trimmed === 'home' || trimmed === 'cd home' || trimmed === 'cd /' || trimmed === 'cd ~' || trimmed === 'go home' || trimmed === 'exit') {
+          appendLine('<span style="color:#00d4aa;">Redirecting to homepage...</span>', 'output');
+          setTimeout(function() { window.location.href = 'index.html'; }, 800);
+        } else if (trimmed === 'ls') {
+          appendLine('<a href="index.html">index.html</a>  <a href="index.html">portfolio</a>  <a href="index.html">projects</a>  <a href="index.html">articles</a>', 'output');
+        } else if (trimmed === 'whoami') {
+          appendLine('Gurpreet Singh - Senior Staff SRE @ NatWest Group', 'output');
+        } else if (trimmed === 'uptime') {
+          appendLine('14+ years, 7 companies, and counting...', 'output');
+        } else if (trimmed === 'sudo hire gurpreet') {
+          appendLine('<span style="color:#00d4aa;">Access granted.</span> Let\'s talk &rarr; <a href="mailto:senghgurpreett@gmail.com" style="color:#6c63ff;">senghgurpreett@gmail.com</a>', 'output');
+        } else if (trimmed === 'clear') {
           termOutput.innerHTML = '';
-        } else if (result !== null) {
-          appendOutput(result);
-        }
-      } else {
-        appendOutput('<span style="color:#ff5f57;">' + escapeHtml(trimmed) + ': command not found.</span> Type \'help\' for available commands.');
-      }
-
-      termBody.scrollTop = termBody.scrollHeight;
-    }
-
-    termInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        var cmd = termInput.value;
-        termInput.value = '';
-        processCommand(cmd);
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (histIdx < history.length - 1) {
-          histIdx++;
-          termInput.value = history[histIdx];
-        }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (histIdx > 0) {
-          histIdx--;
-          termInput.value = history[histIdx];
         } else {
-          histIdx = -1;
-          termInput.value = '';
+          appendLine('<span style="color:#ff5f57;">' + escapeHtml(trimmed) + ': command not found.</span> Type \'help\' for available commands.', 'output');
         }
       }
+
+      termInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          var cmd = termInput.value;
+          termInput.value = '';
+          processCommand(cmd);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (histIdx < cmdHistory.length - 1) {
+            histIdx++;
+            termInput.value = cmdHistory[histIdx];
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (histIdx > 0) {
+            histIdx--;
+            termInput.value = cmdHistory[histIdx];
+          } else {
+            histIdx = -1;
+            termInput.value = '';
+          }
+        }
+      });
+
+      // Auto-focus
+      termInput.focus();
     });
   </script>
 </body>
