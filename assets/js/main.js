@@ -35,8 +35,29 @@
     $(id).fadeIn(150, callback);
   }
 
+  // Generate time-based greeting
+  function getTerminalGreeting() {
+    var now = new Date();
+    var h = now.getHours();
+    var m = now.getMinutes();
+    var ampm = h >= 12 ? 'PM' : 'AM';
+    var h12 = h % 12 || 12;
+    var mStr = m < 10 ? '0' + m : m;
+    var timeStr = (h12 < 10 ? '0' + h12 : h12) + ':' + mStr + ' ' + ampm;
+    var greeting;
+    if (h >= 5 && h < 12) greeting = 'Good morning';
+    else if (h >= 12 && h < 17) greeting = 'Good afternoon';
+    else if (h >= 17 && h < 21) greeting = 'Good evening';
+    else greeting = 'Burning the midnight oil';
+    return '[' + timeStr + '] ' + greeting + ', welcome to my terminal.';
+  }
+
   function runTerminalSequence() {
+    // Set greeting text
+    $('#greetingText').text(getTerminalGreeting());
+
     var steps = [
+      function(next) { showOutput('#termLine0', next); },
       function(next) { typeText($('#termLine1 .terminal-text'), next); },
       function(next) { showOutput('#termLine2', next); },
       function(next) { showOutput('#termLine3', function() { typeText($('#termLine3 .terminal-text'), next); }); },
@@ -176,13 +197,39 @@
 
   });
 
-  // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    items: 1
-  });
+  // ======= Testimonials Slider (Pure CSS + JS) =======
+  (function() {
+    var $slides = $('.testimonial-slide');
+    var $dots = $('.testimonial-dot');
+    var total = $slides.length;
+    var current = 0;
+    var timer;
+
+    function goToSlide(index) {
+      if (index === current) return;
+      $slides.removeClass('active');
+      $dots.removeClass('active');
+      current = index;
+      $slides.eq(current).addClass('active');
+      $dots.eq(current).addClass('active');
+    }
+
+    function nextSlide() {
+      goToSlide((current + 1) % total);
+    }
+
+    function startAutoRotate() {
+      clearInterval(timer);
+      timer = setInterval(nextSlide, 6000);
+    }
+
+    $dots.on('click', function() {
+      goToSlide(parseInt($(this).data('index')));
+      startAutoRotate();
+    });
+
+    if (total > 0) startAutoRotate();
+  })();
 
   // Portfolio details carousel
   $(".portfolio-details-carousel").owlCarousel({
@@ -576,7 +623,7 @@
       if (result === '__CLEAR__') {
         $output.empty();
         // Also hide the original terminal lines
-        $('#termLine1, #termLine2, #termLine3, #termLine4, #termLine5, #termLine6, #termLine7, #termLine8').hide();
+        $('#termLine0, #termLine1, #termLine2, #termLine3, #termLine4, #termLine5, #termLine6, #termLine7, #termLine8').hide();
       } else {
         var outputLine = '<div class="terminal-line terminal-output" style="display:block;padding-left:22px;white-space:pre-wrap;">' + result + '</div>';
         $output.append(outputLine);
@@ -729,6 +776,20 @@
       $glow.removeClass('active');
     });
   }
+
+  // ======= Keyboard Shortcuts (1-4 for tabs) =======
+  var tabShortcuts = { '1': 'portfolio', '2': 'projects', '3': 'explorations', '4': 'articles' };
+
+  $(document).on('keydown', function(e) {
+    // Don't trigger when typing in input fields
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) return;
+    var tab = tabShortcuts[e.key];
+    if (tab) {
+      e.preventDefault();
+      switchTab(tab);
+    }
+  });
 
   // ======= Easter Egg: Konami Code =======
   var konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // up up down down left right left right B A

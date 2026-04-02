@@ -2677,3 +2677,227 @@ section {
 .sre-metric-progress-fill.animated {
   width: var(--target-width);
 }
+
+/*--------------------------------------------------------------
+# Terminal Greeting Line
+--------------------------------------------------------------*/
+.terminal-greeting {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding-left: 0;
+  font-family: "JetBrains Mono", monospace;
+  opacity: 0.7;
+}
+
+/*--------------------------------------------------------------
+# Keyboard Shortcut Hint
+--------------------------------------------------------------*/
+.tab-shortcut-hint {
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/*--------------------------------------------------------------
+# Testimonials Slider (Modern Crossfade)
+--------------------------------------------------------------*/
+.testimonials-slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonials-track {
+  position: relative;
+  min-height: 320px;
+}
+
+.testimonial-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  text-align: center;
+}
+
+.testimonial-slide.active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.testimonial-quote {
+  padding: 0 20px;
+  margin-bottom: 32px;
+}
+
+.testimonial-quote .quote-icon-left,
+.testimonial-quote .quote-icon-right {
+  color: rgba(108, 99, 255, 0.3);
+  font-size: 26px;
+}
+
+.testimonial-quote .quote-icon-left {
+  display: inline-block;
+  position: relative;
+  left: -5px;
+}
+
+.testimonial-quote .quote-icon-right {
+  display: inline-block;
+  position: relative;
+  right: -5px;
+  top: 10px;
+}
+
+.testimonial-quote p {
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.8;
+  display: inline;
+}
+
+@media (min-width: 992px) {
+  .testimonial-quote p {
+    font-size: 18px;
+  }
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonial-author img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 12px;
+  transition: var(--transition);
+}
+
+.testimonial-slide.active .testimonial-author img:hover {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
+}
+
+.testimonial-author h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.testimonial-author h4 {
+  font-size: 13px;
+  color: var(--accent-2);
+  margin: 0;
+  font-weight: 500;
+}
+
+.testimonials-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.testimonial-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.testimonial-dot.active {
+  background: var(--accent-1);
+  box-shadow: 0 0 10px rgba(108, 99, 255, 0.3);
+}
+
+.testimonial-dot:hover {
+  background: rgba(108, 99, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  .testimonials-track {
+    min-height: 380px;
+  }
+  .testimonial-quote p {
+    font-size: 15px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Floating Resume Download Button
+--------------------------------------------------------------*/
+.resume-download-fab {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 48px;
+  width: 48px;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: 999px;
+  color: var(--text-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.resume-download-fab i {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.resume-download-fab span {
+  opacity: 0;
+  margin-left: 0;
+  transition: opacity 0.2s ease 0s, margin-left 0.3s ease;
+}
+
+.resume-download-fab:hover {
+  width: 210px;
+  background: rgba(108, 99, 255, 0.15);
+  border-color: rgba(108, 99, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(108, 99, 255, 0.2);
+  color: #fff;
+  text-decoration: none;
+}
+
+.resume-download-fab:hover span {
+  opacity: 1;
+  margin-left: 10px;
+  transition: opacity 0.25s ease 0.1s, margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .resume-download-fab {
+    display: none;
+  }
+}

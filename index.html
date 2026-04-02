@@ -11,6 +11,10 @@
   <meta content="Gurpreet Singh - Senior Staff SRE at NatWest Group. Expertise in Site Reliability Engineering, Observability, AIOps, Cloud Architecture, Kubernetes, and Platform Engineering." name="description">
   <meta content="Gurpreet Singh, Senior Staff SRE, Site Reliability Engineering, NatWest, Observability, AIOps, FinOps, Cloud Architecture, Kubernetes, DevSecOps, Platform Engineering, AWS" name="keywords">
 
+  <!-- PWA Manifest & Theme -->
+  <link rel="manifest" href="assets/manifest.json">
+  <meta name="theme-color" content="#6c63ff">
+
   <!-- Favicons -->
   <link href="assets/img/favicon_io/favicon.ico" rel="icon">
   <link href="assets/img/favicon_io/apple-touch-icon.png" rel="apple-touch-icon">
@@ -79,6 +83,9 @@
             <span class="terminal-title">gurpreet@sre ~ %</span>
           </div>
           <div class="terminal-body">
+            <div class="terminal-line terminal-output terminal-greeting" id="termLine0" style="display:none;">
+              <span id="greetingText"></span>
+            </div>
             <div class="terminal-line" id="termLine1">
               <span class="terminal-prompt">$</span>
               <span class="terminal-text" data-text="whoami"></span>
@@ -154,6 +161,7 @@
         <button class="tab-btn" data-tab="explorations"><i class="bx bx-brain"></i> Explorations</button>
         <button class="tab-btn" data-tab="articles"><i class="bx bx-pen"></i> Articles</button>
       </div>
+      <div class="tab-shortcut-hint">Press 1-4 to navigate</div>
     </div>
   </div>
 
@@ -653,101 +661,101 @@
           <span>What People Say</span>
           <p>The most important skill in tech isn't software or hardware. It's building and maintaining relationships.</p>
         </div>
-        <div class="owl-carousel testimonials-carousel" data-aos="zoom-in" data-aos-delay="100">
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/ravi.jfif" class="testimonial-img" alt="Ravi Motamarri">
-            <h3>Ravi Motamarri</h3>
-            <h4>Delivery Manager / Jaguar</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Gurpreet comes from non engineering background who demonstrated skill/expertise more than an Engineering
-              graduate. He is pleasure to work with, quick learner, high in aspirations, enthusiastic, questions the
-              status quo, delivers what he promise. Gurpreet showed lots of maturity at a trainee level, hence I would
-              strongly recommend him.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
+        <div class="testimonials-slider" data-aos="zoom-in" data-aos-delay="100">
+          <div class="testimonials-track">
+            <div class="testimonial-slide active" data-index="0">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Gurpreet comes from non engineering background who demonstrated skill/expertise more than an Engineering graduate. He is pleasure to work with, quick learner, high in aspirations, enthusiastic, questions the status quo, delivers what he promise. Gurpreet showed lots of maturity at a trainee level, hence I would strongly recommend him.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/ravi.jfif" alt="Ravi Motamarri">
+                <h3>Ravi Motamarri</h3>
+                <h4>Delivery Manager / Jaguar</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="1">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>A fantastic colleague and friend. Gurpreet is an exceptionally quick learner, has a growth mindset, constantly willing to find solutions to problems regardless of how trivial or complex. Gurpreet has the ability to translate complex technical challenges into everyday business language which makes sense to all parties involved. A real pleasure to be around and to work with.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/lage.jpg" alt="Lage Antony">
+                <h3>Lage Antony</h3>
+                <h4>CRM Consultant / Speridian</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="2">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Working with Gurpreet was never disappointing! A committed person, he was always able to deliver. He would always allow to discuss all options before taking a decision. His programming skills reflected his open mind and creative skills. You will find him very easy and understanding person to work with.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/Rahul.jfif" alt="Rahul Sharma">
+                <h3>Rahul Sharma</h3>
+                <h4>Customer Experience Solution Architect / EX Wipro</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="3">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Gurpreet's creativity, attention to detail, focus on delivery is wonderful. He is also a good leader with the ability to put together high performing teams and retain the talent. Gurpreet is a resourceful, creative, and solution-oriented person who was frequently able to come up with new and innovative approaches to his assigned projects.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/dheerja.jfif" alt="Dheerja Sharma">
+                <h3>Dheerja Sharma</h3>
+                <h4>Sr. Program Manager / MakeMyTrip</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="4">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>I had the privilege of working with Gurpreet in CRM team for more than one year at Myntra. He is proactive, result oriented, responsible, independent and customer focused strategist. Innovative perfectionist and technically sound, always ready to put all his energy and time to get the job done. He has an exceptional troubleshooting and analytical skill. He is a great asset to any company.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/Vivek.jfif" alt="Vivek Brohma">
+                <h3>Vivek Brohma</h3>
+                <h4>Software Engineer / Spotify</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="5">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>As per my understanding and interaction with Gurpreet, he is very enthusiastic &amp; intellectual person. He is wise enough to use his sharp brain to achieve his teams' and individual benefit. On personal front being rational in approach, Gurpreet is a straightforward &amp; a generous person.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/shivi.jfif" alt="Shivi Mittal">
+                <h3>Shivi Mittal</h3>
+                <h4>HR Business Partner / EZOPS Inc.</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="6">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Gurpreet: highly diligent software architect and developer, superhuman being. Gurpreet is absorbed by technology, yet is warm and welcoming, a truly rare quality for someone so focused. Gurpreet is approachable, a true joy to work with, even when under the extreme pressure of a tough deadline. A solid technologist and an even better human being!</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/GENEBOND.jpg" alt="Gene Bond">
+                <h3>Gene Bond</h3>
+                <h4>Executive Director at iiSM.ORG</h4>
+              </div>
+            </div>
           </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/lage.jpg" class="testimonial-img" alt="Lage Antony">
-            <h3>Lage Antony</h3>
-            <h4>CRM Consultant / Speridian</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              A fantastic colleague and friend. Gurpreet is an exceptionally quick learner, has a growth mindset,
-              constantly willing to find solutions to problems regardless of how trivial or complex. Gurpreet has the
-              ability to translate complex technical challenges into everyday business language which makes sense to all
-              parties involved. A real pleasure to be around and to work with.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/Rahul.jfif" class="testimonial-img" alt="Rahul Sharma">
-            <h3>Rahul Sharma</h3>
-            <h4>Customer Experience Solution Architect / EX Wipro</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Working with Gurpreet was never disappointing! A committed person, he was always able to deliver. He would
-              always allow to discuss all options before taking a decision. His programming skills reflected his open
-              mind and creative skills. You will find him very easy and understanding person to work with.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/dheerja.jfif" class="testimonial-img" alt="Dheerja Sharma">
-            <h3>Dheerja Sharma</h3>
-            <h4>Sr. Program Manager / MakeMyTrip</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Gurpreet's creativity, attention to detail, focus on delivery is wonderful. He is also a good leader with
-              the ability to put together high performing teams and retain the talent. Gurpreet is a resourceful,
-              creative, and solution-oriented person who was frequently able to come up with new and innovative
-              approaches to his assigned projects.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/Vivek.jfif" class="testimonial-img" alt="Vivek Brohma">
-            <h3>Vivek Brohma</h3>
-            <h4>Software Engineer / Spotify</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              I had the privilege of working with Gurpreet in CRM team for more than one year at Myntra. He is
-              proactive, result oriented, responsible, independent and customer focused strategist. Innovative
-              perfectionist and technically sound, always ready to put all his energy and time to get the job done.
-              He has an exceptional troubleshooting and analytical skill. He is a great asset to any company.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/shivi.jfif" class="testimonial-img" alt="Shivi Mittal">
-            <h3>Shivi Mittal</h3>
-            <h4>HR Business Partner / EZOPS Inc.</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              As per my understanding and interaction with Gurpreet, he is very enthusiastic &amp; intellectual person. He
-              is wise enough to use his sharp brain to achieve his teams' and individual benefit. On personal front being
-              rational in approach, Gurpreet is a straightforward &amp; a generous person.
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="assets/img/testimonials/GENEBOND.jpg" class="testimonial-img" alt="Gene Bond">
-            <h3>Gene Bond</h3>
-            <h4>Executive Director at iiSM.ORG</h4>
-            <p>
-              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-              Gurpreet: highly diligent software architect and developer, superhuman being. Gurpreet is absorbed by
-              technology, yet is warm and welcoming, a truly rare quality for someone so focused. Gurpreet is
-              approachable, a true joy to work with, even when under the extreme pressure of a tough deadline.
-              A solid technologist and an even better human being!
-              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-            </p>
+          <div class="testimonials-dots">
+            <span class="testimonial-dot active" data-index="0"></span>
+            <span class="testimonial-dot" data-index="1"></span>
+            <span class="testimonial-dot" data-index="2"></span>
+            <span class="testimonial-dot" data-index="3"></span>
+            <span class="testimonial-dot" data-index="4"></span>
+            <span class="testimonial-dot" data-index="5"></span>
+            <span class="testimonial-dot" data-index="6"></span>
           </div>
         </div>
       </div>
@@ -989,6 +997,12 @@
       <img src="assets/img/foot.jpg" class="footer-image" alt="Gurpreet Singh footer">
     </div>
   </footer><!-- End Footer -->
+
+  <!-- Floating Resume Download Button -->
+  <a href="assets/resume/latest/Gurpreet Singh.pdf" class="resume-download-fab" download>
+    <i class="bx bx-download"></i>
+    <span>Download Resume</span>
+  </a>
 
   <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
   <div id="preloader"></div>
