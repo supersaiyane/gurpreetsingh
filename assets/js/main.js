@@ -287,27 +287,29 @@
   });
 
   // ======= Tab Navigation =======
-  function switchTab(tab) {
-    // 1. Scroll to tab bar FIRST (before switching content)
-    var tabNav = document.getElementById('tabNav');
-    var scrollTarget = tabNav.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo(0, scrollTarget);
+  // Store the fixed position of where tabs start (just below hero)
+  var tabStartPosition = 0;
+  $(window).on('load', function() {
+    tabStartPosition = document.getElementById('tabNav').offsetTop;
+  });
 
-    // 2. Switch tab content
+  function switchTab(tab) {
+    // 1. Switch tab content
     $('.tab-btn').removeClass('active');
     $('.tab-btn[data-tab="' + tab + '"]').addClass('active');
     $('.tab-content').removeClass('active');
     $('#tab-' + tab).addClass('active');
 
-    // 3. Reset transforms
+    // 2. Reset transforms
     $('.section-title span').css('transform', 'none');
 
-    // 4. Scroll again after reflow to ensure correct position
+    // 3. Force scroll to where tabs begin (hero bottom)
+    window.scrollTo(0, tabStartPosition);
+
+    // 4. Ensure position sticks after reflow
     requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        window.scrollTo(0, scrollTarget);
-        AOS.refresh();
-      });
+      window.scrollTo(0, tabStartPosition);
+      AOS.refresh();
     });
   }
 
