@@ -186,6 +186,7 @@
   });
 
   // GitHub Projects - fetch and render
+  // *** EDIT THIS LIST to choose which repos to feature ***
   var featuredRepos = [
     'IDP_Backstage',
     'auto-agent-k8s',
@@ -194,7 +195,9 @@
     'gitops_aws',
     'FinOps',
     'airflow',
-    'smart_llm_gateway'
+    'smart_llm_gateway',
+    'rag-llm',
+    'SRE'
   ];
 
   var langColors = {
@@ -219,10 +222,10 @@
       if (desc.length > 120) desc = desc.substring(0, 120) + '...';
 
       var card = '<div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">' +
-        '<div class="project-card">' +
+        '<div class="project-card" data-url="' + repo.html_url + '">' +
           '<div class="project-header">' +
-            '<h4><a href="' + repo.html_url + '" target="_blank" rel="noopener">' + repo.name + '</a></h4>' +
-            '<i class="bx bx-git-repo-forked project-icon"></i>' +
+            '<h4>' + repo.name + '</h4>' +
+            '<i class="bx bxl-github project-icon"></i>' +
           '</div>' +
           '<p class="project-desc">' + desc + '</p>' +
           '<div class="project-meta">' +
@@ -246,28 +249,30 @@
     }
   })();
 
+  // Click anywhere on project card to open repo
+  $(document).on('click', '.project-card', function() {
+    var url = $(this).data('url');
+    if (url) window.open(url, '_blank');
+  });
+
   // Fetch repos from GitHub API
   $.get('https://api.github.com/users/supersaiyane/repos?per_page=100&sort=pushed', function(data) {
-    // Featured repos
-    var featured = [];
+    // Filter out ALL forks
+    var originals = data.filter(function(r) { return !r.fork; });
     var repoMap = {};
-    data.forEach(function(r) { repoMap[r.name] = r; });
+    originals.forEach(function(r) { repoMap[r.name] = r; });
+
+    // Featured repos (only from your curated list, only originals)
+    var featured = [];
     featuredRepos.forEach(function(name) {
       if (repoMap[name]) featured.push(repoMap[name]);
     });
-    if (featured.length < 8) {
-      var sorted = data.filter(function(r) { return !r.fork && featuredRepos.indexOf(r.name) === -1; })
-        .sort(function(a, b) { return b.stargazers_count - a.stargazers_count; });
-      for (var i = 0; i < sorted.length && featured.length < 8; i++) {
-        featured.push(sorted[i]);
-      }
-    }
     renderProjects(featured, '#projectsGrid');
 
-    // Latest 6 repos (non-fork, excluding featured)
+    // Latest 6 original repos (excluding featured)
     var featuredNames = featured.map(function(r) { return r.name; });
-    var latest = data
-      .filter(function(r) { return !r.fork && featuredNames.indexOf(r.name) === -1; })
+    var latest = originals
+      .filter(function(r) { return featuredNames.indexOf(r.name) === -1; })
       .sort(function(a, b) { return new Date(b.pushed_at) - new Date(a.pushed_at); })
       .slice(0, 6);
     renderProjects(latest, '#latestGrid');
@@ -438,6 +443,11 @@
     // Parallax for ambient blobs
     $('.ambient-blob-1').css('transform', 'translateY(' + (scrolled * 0.04) + 'px)');
     $('.ambient-blob-2').css('transform', 'translateY(' + (scrolled * -0.03) + 'px)');
+
+    // Scroll progress bar
+    var docHeight = $(document).height() - $(window).height();
+    var progress = (scrolled / docHeight) * 100;
+    $('#scrollProgress').css('width', progress + '%');
   });
 
   // Water ripple effect on click
