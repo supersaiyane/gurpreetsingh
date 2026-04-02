@@ -10,32 +10,42 @@
 
   <title>404 - Page Not Found | Gurpreet Singh</title>
 
-  <!-- Favicons -->
   <link href="assets/img/favicon_io/favicon.ico" rel="icon">
   <link href="assets/img/favicon_io/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS -->
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 
-  <!-- Main CSS -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
   <style>
-    .page-404 {
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-glass: rgba(255, 255, 255, 0.03);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #f0f0f5;
+      --text-secondary: #8b8b9e;
+      --text-muted: #5a5a6e;
+      --accent-1: #6c63ff;
+      --accent-2: #00d4aa;
+      --radius-lg: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 20px;
-      background: var(--bg-primary);
       position: relative;
+      overflow: hidden;
     }
 
-    .page-404::before {
+    body::before {
       content: "";
       position: absolute;
       top: -50%;
@@ -48,21 +58,31 @@
       pointer-events: none;
     }
 
+    .hint-text {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+
     .error-terminal {
       background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      max-width: 600px;
+      max-width: 620px;
       width: 100%;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(108, 99, 255, 0.05);
       position: relative;
       z-index: 1;
     }
 
-    .error-terminal .terminal-header {
+    .terminal-header {
       background: rgba(255, 255, 255, 0.05);
       padding: 12px 16px;
       display: flex;
@@ -71,110 +91,212 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .error-terminal .terminal-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
+    .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
 
-    .error-terminal .terminal-title {
+    .terminal-title {
       font-family: "JetBrains Mono", monospace;
       font-size: 12px;
       color: var(--text-muted);
       margin-left: 8px;
     }
 
-    .error-terminal .terminal-body {
-      padding: 28px 24px;
+    .terminal-body {
+      padding: 24px;
       font-family: "JetBrains Mono", monospace;
       font-size: 14px;
-      line-height: 2.2;
+      line-height: 2;
+      max-height: 400px;
+      overflow-y: auto;
     }
 
-    .error-terminal .terminal-line {
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
+    .terminal-line { white-space: pre-wrap; word-break: break-word; }
 
-    .error-terminal .prompt {
-      color: var(--accent-2);
-      font-weight: 700;
-    }
+    .prompt { color: var(--accent-2); font-weight: 700; margin-right: 10px; }
+    .cmd { color: var(--text-primary); }
+    .output-error { color: #ff5f57; padding-left: 22px; }
+    .output { color: var(--text-secondary); padding-left: 22px; }
+    .output a { color: var(--accent-1); text-decoration: none; }
+    .output a:hover { color: var(--accent-2); }
 
-    .error-terminal .cmd {
-      color: var(--text-primary);
-    }
-
-    .error-terminal .output {
-      color: #ff5f57;
-      padding-left: 0;
-    }
-
-    .error-terminal .output-success {
-      color: var(--text-secondary);
-      padding-left: 0;
-    }
-
-    .error-terminal .output-link {
-      color: var(--accent-1);
-    }
-
-    .error-cta {
-      margin-top: 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .error-cta a {
-      display: inline-flex;
+    .input-line {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
-      background: var(--accent-gradient);
-      color: #fff;
-      font-weight: 600;
-      font-size: 15px;
-      border-radius: var(--radius-xl);
-      transition: var(--transition);
-      text-decoration: none;
+      margin-top: 4px;
     }
 
-    .error-cta a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(108, 99, 255, 0.35);
-      color: #fff;
+    .term-input {
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      flex: 1;
+      caret-color: var(--accent-2);
+    }
+
+    .term-input::placeholder { color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      .terminal-body { font-size: 12px; padding: 16px; }
+      .term-input { font-size: 12px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="page-404">
-    <div class="error-terminal">
-      <div class="terminal-header">
-        <span class="terminal-dot dot-red"></span>
-        <span class="terminal-dot dot-yellow"></span>
-        <span class="terminal-dot dot-green"></span>
-        <span class="terminal-title">gurpreet@sre ~ %</span>
-      </div>
-      <div class="terminal-body">
-        <div class="terminal-line">
-          <span class="prompt">$</span> <span class="cmd">cat requested_page.html</span>
-        </div>
-        <div class="terminal-line output">
-          Error: 404 — File not found
-        </div>
-        <div class="terminal-line" style="margin-top: 8px;">
-          <span class="prompt">$</span> <span class="cmd">suggest --fix</span>
-        </div>
-        <div class="terminal-line output-success">
-          Maybe try the homepage?
-        </div>
-      </div>
+  <p class="hint-text">Use the terminal to navigate back home</p>
+  <div class="error-terminal" id="terminal">
+    <div class="terminal-header">
+      <span class="terminal-dot dot-red"></span>
+      <span class="terminal-dot dot-yellow"></span>
+      <span class="terminal-dot dot-green"></span>
+      <span class="terminal-title">gurpreet@sre ~ %</span>
     </div>
-    <div class="error-cta">
-      <a href="index.html"><i class="bx bx-home"></i> Return to Home</a>
+    <div class="terminal-body" id="termBody">
+      <div class="terminal-line">
+        <span class="prompt">$</span><span class="cmd">cat requested_page.html</span>
+      </div>
+      <div class="terminal-line output-error">
+        Error: 404 — File not found
+      </div>
+      <div class="terminal-line" style="margin-top:4px;">
+        <span class="prompt">$</span><span class="cmd">suggest --fix</span>
+      </div>
+      <div class="terminal-line output">
+        The page you're looking for doesn't exist. Try one of these:
+      </div>
+      <div id="termOutput"></div>
+      <div class="input-line">
+        <span class="prompt">$</span>
+        <input type="text" class="term-input" id="termInput" placeholder="type help..." autocomplete="off" spellcheck="false" autofocus>
+      </div>
     </div>
   </div>
+
+  <script>
+    var termBody = document.getElementById('termBody');
+    var termOutput = document.getElementById('termOutput');
+    var termInput = document.getElementById('termInput');
+    var history = [];
+    var histIdx = -1;
+
+    document.getElementById('terminal').addEventListener('click', function() {
+      termInput.focus();
+    });
+
+    var commands = {
+      'help': function() {
+        return [
+          '<span style="color:#00d4aa;font-weight:700;">Available commands:</span>',
+          '  home         — go to homepage',
+          '  whoami       — who is Gurpreet',
+          '  ls           — list pages',
+          '  uptime       — career runtime',
+          '  sudo hire gurpreet — try it ;)',
+          '  clear        — clear terminal',
+          '  help         — show this message'
+        ].join('\n');
+      },
+      'home': function() {
+        appendOutput('<span style="color:#00d4aa;">Redirecting to homepage...</span>');
+        setTimeout(function() { window.location.href = 'index.html'; }, 800);
+        return null;
+      },
+      'cd home': function() { return commands['home'](); },
+      'cd /': function() { return commands['home'](); },
+      'cd ~': function() { return commands['home'](); },
+      'go home': function() { return commands['home'](); },
+      'exit': function() { return commands['home'](); },
+      'ls': function() {
+        return '<a href="index.html">index.html</a>  <a href="index.html#tab-portfolio">portfolio</a>  <a href="index.html#tab-projects">projects</a>  <a href="index.html#tab-articles">articles</a>';
+      },
+      'whoami': function() {
+        return 'Gurpreet Singh - Senior Staff SRE @ NatWest Group';
+      },
+      'uptime': function() {
+        return '14+ years, 7 companies, and counting...';
+      },
+      'sudo hire gurpreet': function() {
+        return '<span style="color:#00d4aa;">Access granted.</span> Let\'s talk → <a href="mailto:senghgurpreett@gmail.com" style="color:#6c63ff;">senghgurpreett@gmail.com</a>';
+      },
+      'clear': function() {
+        return '__CLEAR__';
+      }
+    };
+
+    function appendOutput(html) {
+      var div = document.createElement('div');
+      div.className = 'terminal-line output';
+      div.style.whiteSpace = 'pre-wrap';
+      div.innerHTML = html;
+      termOutput.appendChild(div);
+      termBody.scrollTop = termBody.scrollHeight;
+    }
+
+    function appendCmd(text) {
+      var div = document.createElement('div');
+      div.className = 'terminal-line';
+      div.innerHTML = '<span class="prompt">$</span><span class="cmd">' + escapeHtml(text) + '</span>';
+      termOutput.appendChild(div);
+    }
+
+    function escapeHtml(str) {
+      var tmp = document.createElement('span');
+      tmp.textContent = str;
+      return tmp.innerHTML;
+    }
+
+    function processCommand(cmd) {
+      var trimmed = cmd.trim().toLowerCase();
+      if (!trimmed) return;
+
+      history.unshift(trimmed);
+      histIdx = -1;
+
+      appendCmd(cmd.trim());
+
+      var handler = commands[trimmed];
+      if (handler) {
+        var result = handler();
+        if (result === '__CLEAR__') {
+          termOutput.innerHTML = '';
+        } else if (result !== null) {
+          appendOutput(result);
+        }
+      } else {
+        appendOutput('<span style="color:#ff5f57;">' + escapeHtml(trimmed) + ': command not found.</span> Type \'help\' for available commands.');
+      }
+
+      termBody.scrollTop = termBody.scrollHeight;
+    }
+
+    termInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        var cmd = termInput.value;
+        termInput.value = '';
+        processCommand(cmd);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (histIdx < history.length - 1) {
+          histIdx++;
+          termInput.value = history[histIdx];
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (histIdx > 0) {
+          histIdx--;
+          termInput.value = history[histIdx];
+        } else {
+          histIdx = -1;
+          termInput.value = '';
+        }
+      }
+    });
+  </script>
 </body>
 
 </html>
