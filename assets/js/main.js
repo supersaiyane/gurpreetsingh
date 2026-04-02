@@ -777,6 +777,18 @@
     });
   }
 
+  // ======= Photo Rotator =======
+  (function() {
+    var $photos = $('.photo-slide');
+    if ($photos.length <= 1) return;
+    var current = 0;
+    setInterval(function() {
+      $photos.eq(current).removeClass('active');
+      current = (current + 1) % $photos.length;
+      $photos.eq(current).addClass('active');
+    }, 10000);
+  })();
+
   // ======= Keyboard Shortcuts (1-4 for tabs) =======
   var tabShortcuts = { '1': 'portfolio', '2': 'projects', '3': 'explorations', '4': 'articles' };
 

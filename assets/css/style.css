@@ -1417,15 +1417,34 @@ section {
   border-radius: 2px;
 }
 
+/* Photo Rotator */
+.photo-rotator {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-glass);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+
+.photo-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  border-radius: var(--radius-lg);
+}
+
+.photo-slide.active {
+  opacity: 1;
+}
+
 .about .img-fluid {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-glass);
-  transition: var(--transition);
-}
-
-.about .img-fluid:hover {
-  transform: scale(1.02);
-  box-shadow: var(--shadow-glow);
 }
 
 .about .font-italic {
