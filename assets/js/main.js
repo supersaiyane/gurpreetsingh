@@ -288,22 +288,26 @@
 
   // ======= Tab Navigation =======
   function switchTab(tab) {
-    // Update tab buttons
+    // 1. Scroll to tab bar FIRST (before switching content)
+    var tabNav = document.getElementById('tabNav');
+    var scrollTarget = tabNav.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo(0, scrollTarget);
+
+    // 2. Switch tab content
     $('.tab-btn').removeClass('active');
     $('.tab-btn[data-tab="' + tab + '"]').addClass('active');
-
-    // Switch tab content
     $('.tab-content').removeClass('active');
     $('#tab-' + tab).addClass('active');
 
-    // Reset transforms
+    // 3. Reset transforms
     $('.section-title span').css('transform', 'none');
 
-    // Force scroll to top of tab bar after DOM updates
+    // 4. Scroll again after reflow to ensure correct position
     requestAnimationFrame(function() {
-      var scrollTarget = document.getElementById('tabNav').offsetTop;
-      window.scrollTo({ top: scrollTarget, behavior: 'instant' });
-      setTimeout(function() { AOS.refresh(); }, 50);
+      requestAnimationFrame(function() {
+        window.scrollTo(0, scrollTarget);
+        AOS.refresh();
+      });
     });
   }
 
