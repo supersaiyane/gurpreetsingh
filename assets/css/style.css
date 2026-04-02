@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 65px);
   position: relative;
   display: flex;
   align-items: center;
