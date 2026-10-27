@@ -1,1 +1,1 @@
-{"name":"gurpreet-portfolio","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.mjs","dev":"python3 -m http.server 4173 --directory dist"}}
+{"name":"gurpreet-systems-architect","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.mjs","dev":"python3 -m http.server 4177 --directory dist"}}
