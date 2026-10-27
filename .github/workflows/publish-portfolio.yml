@@ -1,0 +1,52 @@
+name: Publish selected portfolio
+
+# Lives on its own branch so main and design source branches stay untouched.
+# Edit publishing.json on ops/pages-publisher and commit to select a version.
+on:
+  push:
+    branches: [ops/pages-publisher]
+    paths:
+      - publishing.json
+      - scripts/prepare_pages.py
+      - tests/**
+      - .github/workflows/publish-portfolio.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-pages-publisher
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.prepare.outputs.deploy }}
+    steps:
+      - name: Checkout publishing configuration
+        uses: actions/checkout@v6
+      - name: Test publisher
+        run: python3 -m unittest discover -s tests -v
+      - name: Prepare selected portfolio
+        id: prepare
+        run: python3 scripts/prepare_pages.py --fetch
+      - name: Upload website artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .pages-artifact
+
+  deploy:
+    if: needs.package.outputs.deploy == 'true'
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish website
+        id: deployment
+        uses: actions/deploy-pages@v4
