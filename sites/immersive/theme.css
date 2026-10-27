@@ -1,0 +1,47 @@
+/* Preserve the blueprint/serif composition in both modes. */
+:root{color-scheme:dark}
+.header-actions{display:flex;align-items:center;gap:14px}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:78px;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:3px;font:12px var(--mono);color:var(--white)}
+.theme-toggle:hover{border-color:var(--cyan);color:var(--cyan)}
+.theme-toggle svg{width:18px;height:18px}.moon-icon{display:none}
+html[data-theme=light]{color-scheme:light;--bg:#f5f8fa;--surface:#fff;--white:#172c35;--muted:#506570;--line:#c6d3da;--cyan:#006a79;--amber:#8a5700;--day-surface:#eaf1f5;--day-tint:#dceef0}
+html[data-theme=light] .sun-icon{display:none}html[data-theme=light] .moon-icon{display:block}
+html[data-theme=light] :is(.eyebrow,.role-kicker,.positioning-lead,.hero-tenure,.blueprint-caption,.blueprint-footer,.layer-label,.layer-details,.terminal-top,.terminal-screen,.terminal-dim,.terminal-mode,.terminal-shortcuts>span,.source-note,.lab-progress,.lab-progress>strong,.lab-topbar>span,.lab-topbar button,.lab-footnote,.metric-display>span,.mini-node small,.chart-caption,.replay-chart label,.replay-chart label span,.strategy-options legend,.strategy-options small,.risk-ack,.debrief>p,.debrief-footer>span,.journey>p:not(.eyebrow),.journey .eyebrow,footer>div,footer>p span,.project-motif,.project-actions .text-link,.exploration-art>span,.case-content p){color:var(--muted)}
+html[data-theme=light] :is(.header nav,.role-kicker,.flow-node .layer-heading strong,.blueprint-footer>span:first-child,.dock-intro p){color:var(--white)}
+html[data-theme=light] :is(.role-kicker span,.blueprint-caption>span:last-child,.blueprint-footer>span:last-child){color:var(--muted)}
+html[data-theme=light] :is(.flow-node,.lab-shell,.hero-terminal,.telemetry-panel,.strategy-options label){background:var(--surface);border-color:var(--line);box-shadow:none}
+html[data-theme=light] :is(.lab-section,.terminal-top,.terminal-shortcuts,.projects .exploration-art){background:var(--day-surface);border-color:var(--line)}
+html[data-theme=light] :is(.flow-node:hover,.flow-node[aria-pressed=true],.scenario:hover,.scenario[aria-pressed=true],.evidence-tabs button[aria-pressed=true],.filters button[aria-pressed=true],.strategy-options label:has(input:checked),.secondary:hover,.contact-nav:hover,.terminal-form button:hover){background:var(--day-tint);border-color:var(--cyan)}
+html[data-theme=light] .primary{color:#fff;background:var(--cyan)}
+html[data-theme=light] .primary:hover{background:#005463}
+html[data-theme=light] :is(.secondary,.contact-nav){border-color:#8098a4;color:var(--white)}
+html[data-theme=light] :is(.work-item .tags span,.terminal-shortcuts button,.evidence-tabs button){color:var(--muted);border-color:#a5bac5;background:transparent}
+html[data-theme=light] .work-item .tags span:first-child{background:var(--day-tint);color:var(--cyan);border-color:#80abb2}
+html[data-theme=light] :is(.terminal-top,.terminal-form,.terminal-shortcuts,.telemetry-panel,.lab-shell,.replay-chart,.blueprint-caption,.blueprint-footer){border-color:var(--line)}
+html[data-theme=light] .terminal-screen{scrollbar-color:#9ab2be #fff}
+html[data-theme=light] .terminal-form input::placeholder{color:#607783}
+html[data-theme=light] .flow-canvas.map-stage{background-image:linear-gradient(90deg,transparent calc(100% - 1px),#c9d8df66 0),linear-gradient(transparent calc(100% - 1px),#c9d8df66 0)}
+html[data-theme=light] .blueprint-connections{stroke:var(--cyan)}
+html[data-theme=light] .blueprint-connections text{fill:var(--muted)}
+html[data-theme=light] :is(.flow-node .layer-details,.terminal-dock){border-color:var(--line)}
+html[data-theme=light] .flow-canvas .node-inspector{background:#fff;border-color:#82a7b5;box-shadow:0 10px 35px #17374320;color:var(--white)}
+html[data-theme=light] .node-inspector p{color:var(--muted)}
+html[data-theme=light] #close-insight{color:var(--cyan);border-color:var(--line)}
+html[data-theme=light] #close-insight:hover{background:var(--day-tint)}
+html[data-theme=light] .mini-node{background:var(--day-tint);border-color:#80abb2}
+html[data-theme=light] .mini-node.degraded{background:#fff0d4;border-color:var(--amber);color:var(--amber)}
+html[data-theme=light] .mini-node.degraded small{color:var(--amber)}
+html[data-theme=light] #evidence-output{background:#e7eff4;color:#254756;border-color:#80a6b4}
+html[data-theme=light] .recovery-panel{background:#fff8e9;border-color:#c5aa72}
+html[data-theme=light] :is(.recovery-panel p,.recovery-panel .risk){color:#67502c}
+html[data-theme=light] #dry-run-result{background:#fff0d4;color:#765014}
+html[data-theme=light] #dry-run-result.dry-run-pass{background:#dff1e9;color:#205848}
+html[data-theme=light] .debrief{background:#e5f1ed;border-color:#7aaca0}
+html[data-theme=light] .amber{background:#edbf63;color:#302309;border-color:#b8862e}
+html[data-theme=light] .projects .ai-art{background:radial-gradient(ellipse at center,#d5e8ed,#eaf1f5 70%)}
+html[data-theme=light] .projects .gateway-art{background:repeating-linear-gradient(90deg,#d4e1e7 0,#d4e1e7 1px,#eaf1f5 1px,#eaf1f5 50px)}
+html[data-theme=light] .projects .loop-art>svg{color:var(--cyan)}
+html[data-theme=light] .projects .writing-art{background:#e1e7da}
+@media(max-width:760px){.header-actions{gap:8px}.theme-toggle{min-width:44px;padding:8px}.theme-toggle span{display:none}html[data-theme=light] .flow-canvas.map-stage{background:none}}
+html[data-theme=light] :is(.section-intro p,.scenario>svg,.scenario b){color:var(--muted)}
+html[data-theme=light] :is(.lab-topbar,.lab-column,.lab-bottom,.work-item,.case-content,.principles article,.journey){border-color:var(--line)}

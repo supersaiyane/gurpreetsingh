@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5" name="viewport">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <title>Gurpreet Singh - Senior Staff SRE @ NatWest Group</title>
+  <meta content="Gurpreet Singh - Senior Staff SRE at NatWest Group. Expertise in Site Reliability Engineering, Observability, AIOps, Cloud Architecture, Kubernetes, and Platform Engineering." name="description">
+  <meta content="Gurpreet Singh, Senior Staff SRE, Site Reliability Engineering, NatWest, Observability, AIOps, FinOps, Cloud Architecture, Kubernetes, DevSecOps, Platform Engineering, AWS" name="keywords">
+
+  <!-- PWA Manifest & Theme -->
+  <link rel="manifest" href="assets/manifest.json">
+  <meta name="theme-color" content="#6c63ff">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon_io/favicon.ico" rel="icon">
+  <link href="assets/img/favicon_io/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Easter Egg Overlay -->
+  <div class="easter-overlay" id="easterOverlay">
+    <div class="easter-content">
+      <button class="easter-close" id="easterClose"><i class="bx bx-x"></i></button>
+      <h2>You Found It!</h2>
+      <p>You clearly know your way around a terminal. Or a konami code. Either way, I like you already.</p>
+      <p>Let's build something reliable together.</p>
+      <a href="mailto:senghgurpreett@gmail.com" class="easter-cta"><i class="bx bx-envelope"></i> Let's Talk</a>
+    </div>
+  </div>
+
+  <!-- SVG gradient defs for SRE dashboard rings -->
+  <svg style="position:absolute;width:0;height:0;">
+    <defs>
+      <linearGradient id="sreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#6c63ff;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#00d4aa;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+  </svg>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ======= Social Links (right side) ======= -->
+  <div class="fix-menu">
+    <ul class="social-links">
+      <li><a href="https://medium.com/@gurpreet.singh_89" target="_blank" rel="noopener"><i class="bx bxl-medium"></i></a></li>
+      <li><a href="https://github.com/supersaiyane" target="_blank" rel="noopener"><i class="bx bxl-github"></i></a></li>
+      <li><a href="https://www.linkedin.com/in/gurpreettsengh/" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a></li>
+    </ul>
+  </div>
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center">
+    <div class="hero-grid-overlay"></div>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="bio">
+        <div class="terminal">
+          <div class="terminal-header">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+            <span class="terminal-title">gurpreet@sre ~ %</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line terminal-output terminal-greeting" id="termLine0" style="display:none;">
+              <span id="greetingText"></span>
+            </div>
+            <div class="terminal-line" id="termLine1">
+              <span class="terminal-prompt">$</span>
+              <span class="terminal-text" data-text="whoami"></span>
+            </div>
+            <div class="terminal-line terminal-output" id="termLine2" style="display:none;">
+              <span class="terminal-name">Gurpreet Singh</span>
+            </div>
+            <div class="terminal-line" id="termLine3" style="display:none;">
+              <span class="terminal-prompt">$</span>
+              <span class="terminal-text" data-text="cat role.txt"></span>
+            </div>
+            <div class="terminal-line terminal-output" id="termLine4" style="display:none;">
+              Senior Staff SRE @ <a href="https://www.natwestgroup.com/" target="_blank" rel="noopener">NatWest Group</a>
+            </div>
+            <div class="terminal-line" id="termLine5" style="display:none;">
+              <span class="terminal-prompt">$</span>
+              <span class="terminal-text" data-text="echo $MISSION"></span>
+            </div>
+            <div class="terminal-line terminal-output" id="termLine6" style="display:none;">
+              Building reliable, scalable systems at enterprise scale.
+            </div>
+            <div class="terminal-line" id="termLine7" style="display:none;">
+              <span class="terminal-prompt">$</span>
+              <span class="terminal-text" data-text="ls ~/passions/"></span>
+            </div>
+            <div class="terminal-line terminal-output" id="termLine8" style="display:none;">
+              <a href="https://github.com/supersaiyane">Coder</a> &nbsp;
+              <a href="https://medium.com/@gurpreet.singh_89">Writer</a>
+            </div>
+            <div class="terminal-line" id="termCursor" style="display:none;">
+              <span class="terminal-prompt">$</span>
+              <span class="terminal-cursor">_</span>
+            </div>
+            <div class="terminal-interactive" id="termInteractive" style="display:none;">
+              <div id="termOutput"></div>
+              <div class="terminal-input-line">
+                <span class="terminal-prompt">$</span>
+                <input type="text" id="termInput" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-cta" id="heroCta" style="opacity:0;">
+          <a href="mailto:senghgurpreett@gmail.com" class="btn-primary-custom"><i class="bx bx-envelope"></i> senghgurpreett@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <a href="#about" class="scrollto">scroll <i class="bx bx-chevron-down"></i></a>
+    </div>
+    <!-- Animated Waves -->
+    <div class="hero-waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+        </defs>
+        <g class="wave-parallax">
+          <use xlink:href="#wave" x="48" y="0" fill="rgba(10,10,15,0.7)"/>
+          <use xlink:href="#wave" x="48" y="3" fill="rgba(10,10,15,0.5)"/>
+          <use xlink:href="#wave" x="48" y="5" fill="rgba(10,10,15,0.3)"/>
+          <use xlink:href="#wave" x="48" y="7" fill="rgba(10,10,15,1)"/>
+        </g>
+      </svg>
+    </div>
+  </section><!-- End Hero -->
+
+  <!-- ======= Tab Navigation ======= -->
+  <div class="tab-nav-wrapper" id="tabNav">
+    <div class="container">
+      <div class="tab-nav">
+        <button class="tab-btn active" data-tab="portfolio"><i class="bx bx-briefcase"></i> Portfolio</button>
+        <button class="tab-btn" data-tab="projects"><i class="bx bx-code-alt"></i> Projects</button>
+        <button class="tab-btn" data-tab="explorations"><i class="bx bx-brain"></i> Explorations</button>
+        <button class="tab-btn" data-tab="articles"><i class="bx bx-pen"></i> Articles</button>
+      </div>
+      <div class="tab-shortcut-hint">Press 1-4 to navigate</div>
+    </div>
+  </div>
+
+  <main id="main">
+
+  <!-- ======= Tab: Portfolio ======= -->
+  <div class="tab-content active" id="tab-portfolio">
+
+    <!-- ======= Stats Counter ======= -->
+    <section id="stats" class="stats">
+      <div class="container" data-aos="fade-up">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+              <div class="stat-number" data-count="14">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+              <div class="stat-number" data-count="169">0</div>
+              <div class="stat-suffix">+</div>
+              <div class="stat-label">Open Source Repos</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+              <div class="stat-number" data-count="7">0</div>
+              <div class="stat-suffix"></div>
+              <div class="stat-label">Companies</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-6">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-suffix"></div>
+              <div class="stat-label">AWS Certifications</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Stats -->
+
+    <!-- ======= SRE Dashboard Section ======= -->
+    <section id="sre-dashboard" class="sre-dashboard">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Dashboard</h2>
+          <span>SRE Metrics</span>
+          <p>Real-time reliability metrics from the trenches. Because what gets measured, gets improved.</p>
+        </div>
+        <div class="row sre-metrics-grid">
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="sre-metric-card">
+              <div class="sre-metric-ring-wrap">
+                <svg class="sre-ring" viewBox="0 0 120 120">
+                  <circle class="sre-ring-bg" cx="60" cy="60" r="52" />
+                  <circle class="sre-ring-fill" cx="60" cy="60" r="52" data-percent="99.99" />
+                </svg>
+                <div class="sre-ring-value"><span class="sre-counter" data-target="99.99" data-decimals="2">0</span>%</div>
+              </div>
+              <div class="sre-metric-label">System Uptime</div>
+              <div class="sre-metric-sublabel">Last 365 days</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="sre-metric-card">
+              <div class="sre-metric-bar-wrap">
+                <div class="sre-metric-bar-icon"><i class="bx bx-timer"></i></div>
+                <div class="sre-metric-bar-container">
+                  <div class="sre-metric-bar" data-width="15"></div>
+                </div>
+              </div>
+              <div class="sre-metric-big">&lt; <span class="sre-counter" data-target="5" data-decimals="0">0</span> min</div>
+              <div class="sre-metric-label">MTTR</div>
+              <div class="sre-metric-sublabel">Mean Time to Recovery</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="sre-metric-card">
+              <div class="sre-metric-big sre-metric-big-counter"><span class="sre-counter" data-target="2847" data-decimals="0">0</span>+</div>
+              <div class="sre-metric-label">Deployments</div>
+              <div class="sre-metric-sublabel">Zero-downtime releases</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="400">
+            <div class="sre-metric-card">
+              <div class="sre-metric-progress-wrap">
+                <div class="sre-metric-progress-bar">
+                  <div class="sre-metric-progress-fill" data-width="98.2"></div>
+                </div>
+              </div>
+              <div class="sre-metric-big"><span class="sre-counter" data-target="98.2" data-decimals="1">0</span>%</div>
+              <div class="sre-metric-label">Error Budget</div>
+              <div class="sre-metric-sublabel">Remaining this quarter</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="500">
+            <div class="sre-metric-card">
+              <div class="sre-metric-big sre-metric-big-counter"><span class="sre-counter" data-target="500" data-decimals="0">0</span>+</div>
+              <div class="sre-metric-label">Incidents Resolved</div>
+              <div class="sre-metric-sublabel">P1-P3 across all services</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="600">
+            <div class="sre-metric-card">
+              <div class="sre-metric-ring-wrap">
+                <svg class="sre-ring" viewBox="0 0 120 120">
+                  <circle class="sre-ring-bg" cx="60" cy="60" r="52" />
+                  <circle class="sre-ring-fill sre-ring-fill-green" cx="60" cy="60" r="52" data-percent="99.95" />
+                </svg>
+                <div class="sre-ring-value"><span class="sre-counter" data-target="99.95" data-decimals="2">0</span>%</div>
+              </div>
+              <div class="sre-metric-label">SLO Compliance</div>
+              <div class="sre-metric-sublabel">Across all service tiers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End SRE Dashboard -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>About</h2>
+          <span>About Me</span>
+          <p>I don't just keep systems running &mdash; I make sure they never go down in the first place.</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
+            <div class="photo-rotator">
+              <img src="assets/img/about_ico.jpg" class="img-fluid photo-slide active" alt="Gurpreet Singh">
+              <img src="assets/img/hero_header1.png" class="img-fluid photo-slide" alt="Gurpreet Singh">
+              <img src="assets/img/hero_header2.jpg" class="img-fluid photo-slide" alt="Gurpreet Singh">
+              <img src="assets/img/hero_header3.jpg" class="img-fluid photo-slide" alt="Gurpreet Singh">
+            </div>
+          </div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left" data-aos-delay="200">
+
+            <!-- The Short Version - open by default -->
+            <div class="accordion-item about-accordion open">
+              <button class="accordion-toggle">
+                <span><i class="bx bx-user-circle"></i> The Short Version</span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>When millions of banking transactions flow through systems every day, there's zero room for "it works on my machine." That's where I come in. As Senior Staff SRE at NatWest Group, I'm the person who ensures that mission-critical financial platforms don't just survive &mdash; they thrive under pressure.</p>
+                <p>Over 14+ years, I've gone from writing my first lines of code at IBM to architecting self-healing platforms that handle enterprise-scale workloads across regulated environments. The journey took me through MakeMyTrip's traffic surges, Myntra's peak sales, and Vertisystem's cloud transformations &mdash; each chapter sharpening a different edge of the blade.</p>
+              </div>
+            </div>
+
+            <!-- What I Actually Do - collapsed -->
+            <div class="accordion-item about-accordion">
+              <button class="accordion-toggle">
+                <span><i class="bx bx-wrench"></i> What I Actually Do</span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>I turn chaos into calm. Complex, distributed systems into predictable, autonomous platforms. My toolkit spans SRE, AIOps, FinOps, Kubernetes, and DevSecOps &mdash; but the real skill is knowing which lever to pull and when. I build SLO frameworks that make reliability measurable, observability pipelines that surface problems before users notice, and automation that fixes issues faster than humans can type.</p>
+                <p>Beyond the day job, I write about what I learn. <strong>Engineering Blueprints</strong> is my platform where I break down complex systems thinking into actionable guidance for engineers and architects who build at scale.</p>
+              </div>
+            </div>
+
+            <!-- What I'm doing right now - collapsed -->
+            <div class="accordion-item about-accordion">
+              <button class="accordion-toggle">
+                <span><i class="bx bx-pulse"></i> What I'm doing right now</span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <p>At NatWest, I'm scaling reliability as a product &mdash; partnering with engineering, security, and executive leadership to institutionalize SRE practices across the bank's digital platforms. Think SLOs, error budgets, incident governance, and cloud-native operating models &mdash; all in a heavily regulated environment where "move fast and break things" is not an option.</p>
+                <p>On the side, I'm deep into AIOps &mdash; exploring how LLMs and intelligent automation can reduce MTTR and make on-call less painful for engineering teams everywhere.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Skills Section ======= -->
+    <section id="skills" class="skills section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Skills</h2>
+          <span>Expertise</span>
+          <p>Core competencies honed across 14+ years of building and operating large-scale distributed systems.</p>
+        </div>
+
+        <div class="row skills-content">
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="progress">
+              <span class="skill">SRE &amp; Reliability Engineering <i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Cloud Architecture (AWS/GCP/Azure) <i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Kubernetes &amp; Container Orchestration <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Observability &amp; Monitoring <i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">AIOps &amp; Intelligent Automation <i class="val">85%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="progress">
+              <span class="skill">System Design &amp; Architecture <i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">DevSecOps &amp; GitOps <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">FinOps &amp; Cloud Cost Optimization <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Terraform &amp; Infrastructure-as-Code <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Technical Leadership &amp; Mentoring <i class="val">95%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Skills Section -->
+
+    <!-- ======= Resume Section ======= -->
+    <section id="resume" class="resume">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Resume</h2>
+          <span>Experience</span>
+          <p>From trainee to Senior Staff &mdash; every role taught me something that the last one couldn't.</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Summary</h3>
+            <div class="resume-item glass-card">
+              <h4>Gurpreet Singh</h4>
+              <p><em>14+ years. IBM to NatWest. From writing code to ensuring millions of transactions never fail. I've built, broken, and rebuilt systems across startups, travel giants, and global banks &mdash; each time making them more resilient than before.</em></p>
+              <p><em>Today, I lead SRE &amp; Cloud Engineering at one of the UK's largest banking groups, where reliability isn't a feature &mdash; it's the product. My work sits at the intersection of engineering, automation, and business impact: SLO frameworks, AIOps-driven remediation, FinOps optimization, and zero-downtime delivery pipelines across regulated cloud environments.</em></p>
+              <p><em>I don't just build platforms. I build the culture, practices, and engineering muscle that keep them standing at scale.</em></p>
+              <ul>
+                <li>South Delhi, Delhi, India</li>
+                <li>senghgurpreett[@]gmail.com</li>
+              </ul>
+            </div>
+
+            <!-- Accordion: Education -->
+            <div class="accordion-item">
+              <button class="accordion-toggle">
+                <span><i class="bx bx-graduation"></i> Education</span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <div class="resume-item">
+                  <h4>Bachelor's degree, Computer Science</h4>
+                  <h5>2007 - 2010</h5>
+                  <p><em>Gayatri Vidya Parishad College of Engineering (Autonomous)</em></p>
+                </div>
+                <div class="resume-item">
+                  <h4>High School, Computer Science, Chemistry, Physics</h4>
+                  <h5>2005 - 2007</h5>
+                  <p><em>Naval Children School</em></p>
+                </div>
+                <div class="resume-item">
+                  <h4>Junior College, Science</h4>
+                  <h5>1995 - 2005</h5>
+                  <p><em>Kendriya Vidyalaya</em></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion: Certifications -->
+            <div class="accordion-item">
+              <button class="accordion-toggle">
+                <span><i class="bx bx-badge-check"></i> Certifications</span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <div class="resume-item cert-item">
+                  <h4>AWS Certified Solutions Architect - Professional</h4>
+                </div>
+                <div class="resume-item cert-item">
+                  <h4>AWS Cloud Quest: Cloud Practitioner</h4>
+                </div>
+                <div class="resume-item cert-item">
+                  <h4>Data Science Fundamentals</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion: Awards -->
+            <div class="accordion-item">
+              <button class="accordion-toggle">
+                <span><i class="bx bx-trophy"></i> Awards</span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <div class="resume-item cert-item">
+                  <h4>Energy To Deliver</h4>
+                </div>
+                <div class="resume-item cert-item">
+                  <h4>STAR (Super Talented Achievers)</h4>
+                </div>
+                <div class="resume-item cert-item">
+                  <h4>Spotlight Recognition Award</h4>
+                </div>
+                <div class="resume-item cert-item">
+                  <h4>Best Team</h4>
+                </div>
+                <div class="resume-item cert-item">
+                  <h4>GoTripper of the Month</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="resume-title">Professional Experience</h3>
+
+            <!-- NatWest - always open -->
+            <div class="resume-item">
+              <h4>Senior Staff SRE</h4>
+              <h5>Oct 2025 - Present</h5>
+              <p><em>NatWest Group</em></p>
+              <ul>
+                <li>Driving availability, resilience, and operational excellence across mission-critical banking platforms.</li>
+                <li>Institutionalizing SRE practices - SLOs, error budgets, observability, automation, and incident governance.</li>
+                <li>Shaping cloud-native operating models and strengthening regulatory resilience.</li>
+                <li>Scaling reliability as a product, reducing operational risk, and enabling safe delivery at speed.</li>
+              </ul>
+            </div>
+
+            <!-- Rest as accordions -->
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Founder &amp; Author <small>Engineering Blueprints</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>Aug 2023 - Present</h5>
+                <ul>
+                  <li>Technical leadership platform covering platform engineering, cloud-native architecture, DevSecOps, and SRE maturity models.</li>
+                  <li>In-depth architectural writing and applied engineering frameworks for senior engineers and technology leaders.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Principal Cloud Architect <small>Vertisystem</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>Jan 2025 - Sep 2025</h5>
+                <ul>
+                  <li>Led enterprise-scale cloud and platform transformation across multi-cloud and hybrid environments.</li>
+                  <li>Introduced platform engineering and GitOps operating models, standardized CI/CD and infrastructure patterns.</li>
+                  <li>Embedded DevSecOps controls into delivery pipelines, improving compliance posture and release reliability.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Senior DevOps Engineer <small>Vertisystem</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>Dec 2022 - Jan 2025</h5>
+                <ul>
+                  <li>Evolved DevOps practices into mature SRE-led operating models using Terraform, Argo CD, and Helm.</li>
+                  <li>Led FinOps-driven cost optimization and automated observability pipelines.</li>
+                  <li>Deployed highly available Kubernetes platforms supporting global SaaS workloads.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Technical Project Lead <small>Vertisystem</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>Dec 2018 - Jan 2023</h5>
+                <ul>
+                  <li>Led hybrid cloud architecture and modernization programs spanning AWS, Azure, and on-premise platforms.</li>
+                  <li>Established reusable architecture patterns and mentored engineering teams in distributed systems design.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Senior Software Engineer <small>MakeMyTrip</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>Aug 2016 - Nov 2018</h5>
+                <ul>
+                  <li>Modernized high-traffic consumer platforms, migrating monolithic services to microservices on AWS with Docker.</li>
+                  <li>Designed hybrid infrastructure solutions enabling seamless scaling during peak travel periods.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Sr. System Analyst <small>Speridian / Myntra</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>Nov 2014 - Aug 2016</h5>
+                <ul>
+                  <li>Engineered backend systems for large-scale customer communication and contact center platforms.</li>
+                  <li>Led customer telephony integration program, integrating enterprise telephony with CRM and backend services.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Techno-Functional Lead <small>Qspear Consultancy</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>May 2014 - Nov 2014</h5>
+                <ul>
+                  <li>Led solution design and cloud CRM implementations for enterprise clients.</li>
+                  <li>Delivered proof-of-concepts, custom integrations, and guided client migrations to cloud-based CRM platforms.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Oracle Service Cloud Dev <small>TCS</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>Nov 2011 - May 2014</h5>
+                <ul>
+                  <li>Multi-role technical consultant supporting Oracle Service Cloud platforms across North America and international markets.</li>
+                  <li>Designed global customer interaction workflows, self-service portals, and operational dashboards.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="accordion-item exp-accordion">
+              <button class="accordion-toggle">
+                <span>Software Trainee <small>IBM</small></span>
+                <i class="bx bx-chevron-down accordion-icon"></i>
+              </button>
+              <div class="accordion-body">
+                <h5>May 2011 - Nov 2011</h5>
+                <ul>
+                  <li>Contributed to automation scripting, ITSM integrations, and internal platform enhancements.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section><!-- End Resume Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Testimonials</h2>
+          <span>What People Say</span>
+          <p>The most important skill in tech isn't software or hardware. It's building and maintaining relationships.</p>
+        </div>
+        <div class="testimonials-slider" data-aos="zoom-in" data-aos-delay="100">
+          <div class="testimonials-track">
+            <div class="testimonial-slide active" data-index="0">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Gurpreet comes from non engineering background who demonstrated skill/expertise more than an Engineering graduate. He is pleasure to work with, quick learner, high in aspirations, enthusiastic, questions the status quo, delivers what he promise. Gurpreet showed lots of maturity at a trainee level, hence I would strongly recommend him.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/ravi.jfif" alt="Ravi Motamarri">
+                <h3>Ravi Motamarri</h3>
+                <h4>Delivery Manager / Jaguar</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="1">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>A fantastic colleague and friend. Gurpreet is an exceptionally quick learner, has a growth mindset, constantly willing to find solutions to problems regardless of how trivial or complex. Gurpreet has the ability to translate complex technical challenges into everyday business language which makes sense to all parties involved. A real pleasure to be around and to work with.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/lage.jpg" alt="Lage Antony">
+                <h3>Lage Antony</h3>
+                <h4>CRM Consultant / Speridian</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="2">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Working with Gurpreet was never disappointing! A committed person, he was always able to deliver. He would always allow to discuss all options before taking a decision. His programming skills reflected his open mind and creative skills. You will find him very easy and understanding person to work with.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/Rahul.jfif" alt="Rahul Sharma">
+                <h3>Rahul Sharma</h3>
+                <h4>Customer Experience Solution Architect / EX Wipro</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="3">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Gurpreet's creativity, attention to detail, focus on delivery is wonderful. He is also a good leader with the ability to put together high performing teams and retain the talent. Gurpreet is a resourceful, creative, and solution-oriented person who was frequently able to come up with new and innovative approaches to his assigned projects.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/dheerja.jfif" alt="Dheerja Sharma">
+                <h3>Dheerja Sharma</h3>
+                <h4>Sr. Program Manager / MakeMyTrip</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="4">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>I had the privilege of working with Gurpreet in CRM team for more than one year at Myntra. He is proactive, result oriented, responsible, independent and customer focused strategist. Innovative perfectionist and technically sound, always ready to put all his energy and time to get the job done. He has an exceptional troubleshooting and analytical skill. He is a great asset to any company.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/Vivek.jfif" alt="Vivek Brohma">
+                <h3>Vivek Brohma</h3>
+                <h4>Software Engineer / Spotify</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="5">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>As per my understanding and interaction with Gurpreet, he is very enthusiastic &amp; intellectual person. He is wise enough to use his sharp brain to achieve his teams' and individual benefit. On personal front being rational in approach, Gurpreet is a straightforward &amp; a generous person.</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/shivi.jfif" alt="Shivi Mittal">
+                <h3>Shivi Mittal</h3>
+                <h4>HR Business Partner / EZOPS Inc.</h4>
+              </div>
+            </div>
+            <div class="testimonial-slide" data-index="6">
+              <div class="testimonial-quote">
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                <p>Gurpreet: highly diligent software architect and developer, superhuman being. Gurpreet is absorbed by technology, yet is warm and welcoming, a truly rare quality for someone so focused. Gurpreet is approachable, a true joy to work with, even when under the extreme pressure of a tough deadline. A solid technologist and an even better human being!</p>
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </div>
+              <div class="testimonial-author">
+                <img src="assets/img/testimonials/GENEBOND.jpg" alt="Gene Bond">
+                <h3>Gene Bond</h3>
+                <h4>Executive Director at iiSM.ORG</h4>
+              </div>
+            </div>
+          </div>
+          <div class="testimonials-dots">
+            <span class="testimonial-dot active" data-index="0"></span>
+            <span class="testimonial-dot" data-index="1"></span>
+            <span class="testimonial-dot" data-index="2"></span>
+            <span class="testimonial-dot" data-index="3"></span>
+            <span class="testimonial-dot" data-index="4"></span>
+            <span class="testimonial-dot" data-index="5"></span>
+            <span class="testimonial-dot" data-index="6"></span>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Testimonials Section -->
+
+  </div><!-- End Tab: Portfolio -->
+
+  <!-- ======= Tab: Projects ======= -->
+  <div class="tab-content" id="tab-projects">
+    <section id="projects" class="projects section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Projects</h2>
+          <span>Open Source</span>
+          <p>Selected projects from my GitHub reflecting work in SRE, Platform Engineering, Cloud, AIOps, and FinOps.</p>
+        </div>
+
+        <h3 class="projects-subtitle"><i class="bx bx-bookmark-heart"></i> Featured</h3>
+        <div class="row" id="projectsGrid">
+          <!-- Featured projects loaded dynamically from GitHub API -->
+        </div>
+
+        <h3 class="projects-subtitle mt-5"><i class="bx bx-time-five"></i> Latest Activity</h3>
+        <div class="row" id="latestGrid">
+          <!-- Latest projects loaded dynamically from GitHub API -->
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="https://github.com/supersaiyane?tab=repositories" target="_blank" rel="noopener" class="btn-outline-custom" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border:1px solid rgba(255,255,255,0.08);border-radius:28px;color:#8b8b9e;font-family:'JetBrains Mono',monospace;font-size:13px;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);">
+            <i class="bx bxl-github"></i> View All 169 Repos
+          </a>
+        </div>
+      </div>
+    </section>
+  </div><!-- End Tab: Projects -->
+
+  <!-- ======= Tab: Explorations ======= -->
+  <div class="tab-content" id="tab-explorations">
+    <section class="explorations-section">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Explorations</h2>
+          <span>AI/ML &amp; MLOps</span>
+          <p>Applied machine learning, MLOps pipelines, and AI-driven SRE — from fraud detection to self-healing platforms.</p>
+        </div>
+
+        <!-- AI/ML Projects -->
+        <h3 class="projects-subtitle"><i class="bx bx-chip"></i> AI/ML &amp; MLOps Projects</h3>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>End-to-End Fraud Detection Pipeline <small>AWS SageMaker + DataZone + EventBridge</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Architected a real-time fraud detection system leveraging SageMaker Pipelines for feature engineering, model training, and deployment.</li>
+              <li>Integrated DataZone for governed datasets and Kinesis Firehose for streaming ingestion, enabling sub-second detection of anomalous transactions.</li>
+              <li>Reduced false positives by 20%+ while maintaining 99.95% inference availability through multi-AZ SageMaker endpoints.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>Recommendation Engine <small>AWS Personalize + SageMaker</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Designed a recommendation engine using SageMaker + Amazon Personalize, optimized with Kinesis Data Streams for real-time user behavior ingestion.</li>
+              <li>Built CI/CD pipelines for ML models with CodePipeline + CodeBuild + SageMaker — cutting model release cycles from weeks to days.</li>
+              <li>Delivered 35% increase in user engagement metrics, directly driving customer conversion uplift.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>MLOps Automation &amp; CI/CD for ML Models <small>GitOps + SageMaker</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Implemented GitOps-style workflows for ML: data versioning, model versioning (SageMaker Model Registry), and deployment automation (ArgoCD + SageMaker endpoints).</li>
+              <li>Automated retraining triggers via EventBridge + Lambda, ensuring continuous model freshness from new production data.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>Monitoring &amp; Drift Detection <small>SageMaker Model Monitor + Prometheus</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Integrated model drift monitoring with SageMaker Model Monitor &amp; custom Prometheus/Grafana dashboards.</li>
+              <li>Proactively triggered model retraining jobs upon detecting data distribution shifts or degraded accuracy, reducing business risk from outdated models.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item exp-accordion" style="margin-bottom:12px;">
+          <button class="accordion-toggle">
+            <span>Scaling ML Workloads <small>Step Functions + Spot Instances</small></span>
+            <i class="bx bx-chevron-down accordion-icon"></i>
+          </button>
+          <div class="accordion-body">
+            <ul>
+              <li>Optimized ML training with spot-enabled SageMaker training jobs, reducing costs by 40% while meeting SLA deadlines.</li>
+              <li>Leveraged Step Functions + SageMaker for orchestrating multi-stage workflows (data preprocessing &rarr; training &rarr; evaluation &rarr; deployment).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Business Impact -->
+        <h3 class="projects-subtitle mt-5"><i class="bx bx-trending-up"></i> Business Impact</h3>
+        <div class="glass-card" style="margin-bottom:40px;">
+          <ul style="padding-left:18px;margin:0;">
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Fraud detection platform safeguarded millions of transactions daily with error-budget aligned reliability.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Recommendation engine improved user retention and revenue through hyper-personalized experiences.</li>
+          </ul>
+        </div>
+
+        <!-- Key Engagements -->
+        <h3 class="projects-subtitle"><i class="bx bx-rocket"></i> Key Engagements</h3>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="glass-card" style="margin-bottom:16px;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">Cloud &amp; Platform Transformation</h4>
+              <ul style="padding-left:18px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Created and implemented the company's cloud and DevOps transformation strategy, enhancing operational agility and scalability.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Trained and mentored 80+ engineers in cloud, DevOps, and platform engineering best practices, boosting team productivity by 30%.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Automated 100+ CI/CD pipelines, Kubernetes clusters, and cloud infrastructure deployments, achieving 92% operational efficiency.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Reduced enterprise cloud spends by 30% through FinOps-driven cost governance frameworks.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="glass-card" style="margin-bottom:16px;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">Architecture &amp; Reliability</h4>
+              <ul style="padding-left:18px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Re-architected legacy monolithic infrastructures into microservices-based distributed systems, improving system update agility by 50%.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Improved platform performance by 70% post-transformation, driving better customer experience and system resilience.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Drove initiatives to enhance SLO achievement, reducing MTTR by 35% across critical services.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Designed and deployed a Covid Vaccination Registration Platform for Indian and international governments on Azure under aggressive timelines.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategic Leadership -->
+        <h3 class="projects-subtitle mt-4"><i class="bx bx-target-lock"></i> Strategic &amp; Executive Leadership</h3>
+
+        <div class="glass-card" style="margin-bottom:40px;">
+          <ul style="padding-left:18px;margin:0;">
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Orchestrated multi-quarter cloud strategy and platform engineering roadmaps, aligning with organizational OKRs, security mandates, and business KPIs.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Built and scaled global engineering capability by mentoring 80+ engineers across US-IND-EMEA regions; instilled SRE culture through hands-on coaching and blameless postmortems.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Partnered with cross-functional leadership (product, security, compliance, finance) to shape investment decisions, drive FinOps governance, and model infrastructure capacity.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Owned reliability and incident response programs for mission-critical workloads; codified DR runbooks, led Chaos SRE programs, and reduced MTTR by 35%.</li>
+            <li style="color:var(--text-secondary);padding-bottom:8px;font-size:14px;">Operated as a strategic advisor bridging product, security, and business goals, while shaping architectural governance and platform modernization efforts.</li>
+          </ul>
+        </div>
+
+        <!-- Currently Exploring -->
+        <h3 class="projects-subtitle"><i class="bx bx-search-alt"></i> Currently Exploring: LLMs, RAG, ML on SRE</h3>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+            <div class="glass-card" style="height:100%;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--accent-2);margin-bottom:10px;">Predictive &amp; Anomaly Detection</h4>
+              <ul style="padding-left:16px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Anomaly detection on metrics/logs with Isolation Forest or auto-encoders to catch issues before threshold alerts fire.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Capacity forecasting with ARIMA/LSTM to drive autoscaler targets and FinOps rightsizing.</li>
+                <li style="color:var(--text-secondary);font-size:13px;">SLO burn-rate prediction models that forecast error-budget exhaustion and trigger early rollbacks.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass-card" style="height:100%;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--accent-2);margin-bottom:10px;">LLM &amp; RAG Applications</h4>
+              <ul style="padding-left:16px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">RAG-powered ChatOps bot (LangChain + Qdrant) that answers incident questions from runbooks/RCA docs in Slack.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">LLM-generated RCA summaries that condense logs, timeline, and PagerDuty notes into post-mortems.</li>
+                <li style="color:var(--text-secondary);font-size:13px;">LLM-generated chaos experiments (LitmusChaos) to broaden failure-mode coverage without manual scripting.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="glass-card" style="height:100%;padding:24px;">
+              <h4 style="font-size:14px;font-weight:700;color:var(--accent-2);margin-bottom:10px;">Automation &amp; Self-Healing</h4>
+              <ul style="padding-left:16px;margin:0;">
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Self-healing workflows: ML predicts failure &rarr; Argo Workflows / AWS SSM runs automated remediation.</li>
+                <li style="color:var(--text-secondary);padding-bottom:6px;font-size:13px;">Root-cause clustering of trace IDs &amp; log fingerprints (DBSCAN, t-SNE) to group correlated failures fast.</li>
+                <li style="color:var(--text-secondary);font-size:13px;">Reinforcement-learning alert tuning that adapts thresholds based on noise vs. signal feedback.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div><!-- End Tab: Explorations -->
+
+  <!-- ======= Tab: Articles ======= -->
+  <div class="tab-content" id="tab-articles">
+    <section class="articles-section">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Articles</h2>
+          <span>Writings</span>
+          <p>Thoughts on SRE, Platform Engineering, Cloud Architecture, and building reliable systems at scale.</p>
+        </div>
+
+        <div class="articles-grid" id="articlesGrid">
+          <!-- Articles rendered from JS -->
+        </div>
+      </div>
+    </section>
+  </div><!-- End Tab: Articles -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Gurpreet Singh</h3>
+      <div class="footer-social">
+        <a href="https://medium.com/@gurpreet.singh_89" target="_blank" rel="noopener"><i class="bx bxl-medium"></i></a>
+        <a href="https://github.com/supersaiyane" target="_blank" rel="noopener"><i class="bx bxl-github"></i></a>
+        <a href="https://www.linkedin.com/in/gurpreettsengh/" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
+        <a href="mailto:senghgurpreett@gmail.com"><i class="bx bx-envelope"></i></a>
+      </div>
+      <p class="footer-tagline">Made with <i class="bx bxs-heart footer-heart"></i> in India</p>
+    </div>
+    <div class="footer-banner">
+      <img src="assets/img/foot.jpg" class="footer-image" alt="Gurpreet Singh footer">
+    </div>
+  </footer><!-- End Footer -->
+
+  <!-- Floating Resume Download Button -->
+  <a href="assets/resume/latest/Gurpreet Singh.pdf" class="resume-download-fab" download>
+    <i class="bx bx-download"></i>
+    <span>Download Resume</span>
+  </a>
+
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

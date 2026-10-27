@@ -1,0 +1,77 @@
+{
+  "repository": "https://github.com/supersaiyane/gurpreetsingh",
+  "versions": [
+    {
+      "id": "original",
+      "branch": "main",
+      "label": "Original site",
+      "description": "Original published portfolio",
+      "commit": "bf7f1dc0b12caf9602bffa3e2108d494987f73b1",
+      "entry": "sites/original/index.html",
+      "files": 48
+    },
+    {
+      "id": "classic",
+      "branch": "design/bootstrap-resume-classic",
+      "label": "Classic resume",
+      "description": "Bootstrap resume, skills and testimonials",
+      "commit": "2f76bff01bb2758ee3fc2bdeba0bc3c365f0d6bc",
+      "entry": "sites/classic/index.html",
+      "files": 151
+    },
+    {
+      "id": "timeline",
+      "branch": "experiment/bootstrap-career-timeline",
+      "label": "Career timeline",
+      "description": "Experimental Bootstrap career timeline",
+      "commit": "c6cfe9e37c0dd1e2ee202414b7cdfac6784da1d4",
+      "entry": "sites/timeline/index.html",
+      "files": 155
+    },
+    {
+      "id": "creative-cv",
+      "branch": "design/creative-cv-now-ui",
+      "label": "Creative CV",
+      "description": "Creative CV with Now UI Kit and parallax header",
+      "commit": "5c1ac1eeef7721b0f5c8977dc4d84e9dcfec1bc5",
+      "entry": "sites/creative-cv/index.html",
+      "files": 244
+    },
+    {
+      "id": "resilience",
+      "branch": "design/resilience-incident-lab",
+      "label": "Resilience lab",
+      "description": "Dark reliability portfolio and incident simulation",
+      "commit": "5aedb48dfa46611c3f58cea7f60fac57a1a8ab5f",
+      "entry": "sites/resilience/index.html",
+      "files": 6
+    },
+    {
+      "id": "blueprint",
+      "branch": "design/refero-portfolio-concepts",
+      "label": "Blueprint",
+      "description": "Architecture flow and serif leadership design",
+      "commit": "90e4622969c7658aa3dde7cb1557c3efb65a000b",
+      "entry": "sites/blueprint/index.html",
+      "files": 12
+    },
+    {
+      "id": "immersive",
+      "branch": "design/immersive-operations",
+      "label": "Immersive",
+      "description": "Technical hero, interactive assembly and guided incidents",
+      "commit": "c4053054e708e99c114822a172b908fe85615bc6",
+      "entry": "sites/immersive/index.html",
+      "files": 19
+    },
+    {
+      "id": "systems-architect",
+      "branch": "design/systems-architect",
+      "label": "Systems Architect",
+      "description": "Fresh, restrained design with systems sculpture and project studies",
+      "commit": "f4bfa8b466106754f1734b1ef14b17a6d7be7bda",
+      "entry": "sites/systems-architect/index.html",
+      "files": 8
+    }
+  ]
+}
