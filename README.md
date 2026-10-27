@@ -12,6 +12,7 @@ This branch, `ops/pages-publisher`, owns the GitHub Pages publishing workflow. I
 The public URL stays https://supersaiyane.github.io/gurpreetsingh/ . One selected version is published at a time.
 
 Supported versions:
+- main (read-only publishing source)
 - design/bootstrap-resume-classic
 - design/creative-cv-now-ui
 - experiment/bootstrap-career-timeline
@@ -21,7 +22,7 @@ Supported versions:
 - design/systems-architect
 - preview (the comparison studio)
 
-New design/* and experiment/* branches also work when they contain index.html at the root or inside dist/. main is explicitly rejected by the publisher; its own working workflow is untouched.
+New design/* and experiment/* branches also work when they contain index.html at the root or inside dist/. main is also supported as a read-only source; publishing it does not modify or merge into the branch.
 
 ## How publishing works
 

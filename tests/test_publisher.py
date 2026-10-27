@@ -23,11 +23,20 @@ class PublisherTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as tmp:
    root=self.fixture(Path(tmp));out=root/'artifact';meta=publisher.prepare(root,'design/test',out)
    self.assertEqual(meta['source_directory'],'.');self.assertTrue((out/'scripts/main.js').is_file())
- def test_main_and_non_design_refs_are_rejected(self):
-  for branch in ['main','refs/heads/main','ops/pages-publisher','deploy/blueprint-portfolio','design/../../main','design/a;echo x']:
+ def test_non_design_refs_are_rejected(self):
+  for branch in ['refs/heads/main','ops/pages-publisher','deploy/blueprint-portfolio','design/../../main','design/a;echo x']:
    with self.assertRaises(ValueError):publisher.validate_branch(branch)
+ def test_main_packages_without_modifying_source(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   root=self.fixture(Path(tmp))
+   subprocess.run(['git','update-ref','refs/remotes/origin/main','HEAD'],cwd=root,check=True)
+   before=publisher.git(root,'rev-parse','refs/remotes/origin/main')
+   meta=publisher.prepare(root,'main',root/'artifact')
+   self.assertEqual(meta['source_branch'],'main')
+   self.assertTrue((root/'artifact/scripts/main.js').is_file())
+   self.assertEqual(publisher.git(root,'rev-parse','refs/remotes/origin/main'),before)
  def test_supported_source_names(self):
-  for branch in ['design/systems-architect','experiment/bootstrap-career-timeline','preview']:
+  for branch in ['main','design/systems-architect','experiment/bootstrap-career-timeline','preview']:
    self.assertEqual(publisher.validate_branch(branch),branch)
  def test_missing_runtime_asset_blocks_publication(self):
   with tempfile.TemporaryDirectory() as tmp:

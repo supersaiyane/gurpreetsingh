@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Package a selected non-main portfolio branch for GitHub Pages. Executes no source code."""
+"""Package a selected portfolio branch for GitHub Pages. Executes no source code."""
 import argparse,io,json,re,shutil,subprocess,tarfile
 from html.parser import HTMLParser
 from pathlib import Path
@@ -13,8 +13,8 @@ class AssetParser(HTMLParser):
   if tag=='link' and attrs.get('rel') in ('stylesheet','icon'):self.paths.append(attrs.get('href',''))
 
 def validate_branch(branch):
- if not isinstance(branch,str) or not re.fullmatch(r'(?:design/|experiment/)[A-Za-z0-9][A-Za-z0-9._/-]*|preview',branch):
-  raise ValueError('Select a design/*, experiment/* or preview branch. main is deliberately excluded.')
+ if not isinstance(branch,str) or not re.fullmatch(r'(?:design/|experiment/)[A-Za-z0-9][A-Za-z0-9._/-]*|preview|main',branch):
+  raise ValueError('Select main, a design/*, experiment/* or preview branch.')
  if '..' in branch or branch.endswith('/') or '/.' in branch:raise ValueError('Invalid source branch.')
  return branch
 
