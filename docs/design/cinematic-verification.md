@@ -27,3 +27,13 @@
 - Global motion pause hides the world and signal and leaves all three narrative chapters accessible. Resume restores the continuous canvas.
 - 390px iframe: experience text, company controls and signal route visually checked; object stays behind content. No browser runtime errors in the desktop journey.
 - Temporary mobile harness removed; all changes remain isolated to design/cinematic-systems.
+
+## Mobile refinement - iPhone 17 Pro Max viewport
+
+- Tested a 440 x 956 CSS viewport in an iframe, not a physical iPhone/Safari runtime.
+- Mobile hero height measured 1299px, down from the prior 300svh/2868px layout (about 55%). Chapters remain accessible in natural flow.
+- Measured section padding ranges from 16px to 52px; no horizontal overflow.
+- Three CSS animations were running and their timelines advanced from 8ms to 8683ms. No Three.js core/module downloads on mobile.
+- Motion pause removed active animations; resume restored all three. Day mode checked with animations running.
+- Desktop 1280px viewport retained its GPU scene and reported no runtime errors. All 19 domain tests passed.
+- Temporary mobile probe and harness removed before commit.

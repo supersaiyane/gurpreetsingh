@@ -10,6 +10,7 @@ Run `npm run dev`, then open http://localhost:4181 . The static website lives in
 
 - Three cinematic chapters with a real-time WebGL system sculpture, reflective orbital paths, scroll-driven camera and live signals.
 - Chapter navigation, day/night theme, motion pause and automatic reduced-motion reading mode.
+- Mobile: compact natural-flow hero chapters, tighter section spacing, and a lightweight animated SVG orbit. Three.js is loaded only for desktop layouts.
 - A persistent 3D world and scroll-traced signal carry through experience, projects, principles, terminal and contact.
 - The shared signal turns amber during simulated incidents and returns to blue on recovery.
 - Company logos and an exclusive experience accordion.

@@ -77,6 +77,11 @@ export function createPageJourney(){
   markers.forEach((g,i)=>g.classList.toggle('passed',tops[i+1]<scrollY+innerHeight*.48));
   const pulse=still?0:Math.sin(time*1.2)*.5+.5;
   cursor.setAttribute('r',String(3+pulse*1.5));
+  if(innerWidth<=700){
+   const hero=document.querySelector('.scene-copy-0').getBoundingClientRect();
+   const pose=samplePose([{x:innerWidth*.66,y:hero.bottom-95,s:1},{x:innerWidth*.83,y:130,s:.67},{x:innerWidth*.85,y:125,s:.65},{x:innerWidth*.83,y:125,s:.6},{x:innerWidth*.85,y:110,s:.6},{x:innerWidth*.85,y:100,s:.62},{x:innerWidth*.83,y:130,s:.65},{x:innerWidth*.5,y:innerHeight*.45,s:1.25},{x:innerWidth*.5,y:innerHeight*.35,s:.9}],current);
+   world.style.setProperty('--mobile-x',pose.x+'px');world.style.setProperty('--mobile-y',pose.y+'px');world.style.setProperty('--mobile-scale',String(pose.s));
+  }
   world.style.setProperty('--world-opacity',still?'0':String(current<.1?1:samplePose([{o:1},{o:.34},{o:.33},{o:.45},{o:.23},{o:.21},{o:.25},{o:.35},{o:.1}],current).o));
   return {chapter:current,fault:activeIncident&&current>2.3&&current<4.15?1:0};
  }

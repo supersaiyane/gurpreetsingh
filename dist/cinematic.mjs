@@ -1,4 +1,4 @@
-import {createPageJourney} from './page-journey.mjs';
+import {createPageJourney} from './page-journey.mjs?v=mobile-4';
 import {initialState, transition, scenarios, evidenceFor} from './incident.mjs';
 import {resolveCommand, commandNames} from './terminal.mjs';
 
@@ -9,7 +9,8 @@ const smooth=(a,b,v)=>{const x=clamp((v-a)/(b-a));return x*x*(3-2*x);};
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let paused=false, light=false, inScene=true, targetProgress=0, progress=0, frame=null, lastTime=0, clock=0;
 const voyage=$('.voyage'),stage=$('.stage'),canvas=$('#system-scene');
-let spatialScene=null,pageJourney=null;
+let spatialScene=null,pageJourney=null,sceneFactory=null,sceneLoading=false;
+const compactScreen=()=>innerWidth<=700;
 const copies=$$('.scene-copy'),chapterButtons=$$('[data-chapter]');
 let width=0,height=0,dpr=1;
 try{light=localStorage.getItem('portfolio-theme')==='light';}catch{}
@@ -24,8 +25,9 @@ $('#theme-toggle').addEventListener('click',()=>{light=!light;try{localStorage.s
 const isStatic=()=>reduced.matches||paused;
 function setMotion(){
  voyage.classList.toggle('static-journey',isStatic());
+ voyage.classList.toggle('compact-journey',compactScreen());
  $('.project-section').classList.toggle('static-projects',isStatic());
- copies.forEach((el,i)=>{if(isStatic()){el.inert=false;el.style.visibility='visible';el.setAttribute('aria-hidden','false');}else updateCopy(i,progress);});
+ copies.forEach((el,i)=>{if(isStatic()||compactScreen()){el.inert=false;el.style.visibility='visible';el.setAttribute('aria-hidden','false');}else updateCopy(i,progress);});
  $('#motion-toggle').disabled=reduced.matches;
  $('#motion-toggle').textContent=reduced.matches?'Motion reduced':paused?'Resume motion':'Pause motion';
  document.body.classList.toggle('motion-paused',paused||reduced.matches);
@@ -38,14 +40,20 @@ document.body.classList.add('js-motion');
 // GPU scene loading is independent of page behavior: content remains usable without WebGL.
 function drawScene(){
  const journey=pageJourney?.frame({time:clock,still:isStatic(),light})||{chapter:0,fault:0};
- spatialScene?.render({progress:isStatic()?0:progress,time:clock,light,still:isStatic(),...journey});
+ if(!compactScreen()&&!isStatic())spatialScene?.render({progress,time:clock,light,still:false,...journey});
 }
-import('./system-scene.mjs').then(({createSystemScene})=>{
- spatialScene=createSystemScene(canvas);
+function loadSpatialScene(){
+ if(compactScreen()||spatialScene||sceneLoading)return;
+ sceneLoading=true;
+ import('./system-scene.mjs?v=mobile-4').then(({createSystemScene})=>{
+ sceneFactory=createSystemScene;
+ if(!compactScreen())spatialScene=createSystemScene(canvas);
  stage.classList.toggle('scene-fallback',!spatialScene);document.body.classList.toggle('scene-fallback',!spatialScene);
  if(spatialScene){spatialScene.resize(width,height);stage.classList.add('scene-ready');document.body.classList.add('scene-ready');}
  requestDraw();
-}).catch(()=>{stage.classList.add('scene-fallback');document.body.classList.add('scene-fallback');});
+}).catch(()=>{stage.classList.add('scene-fallback');document.body.classList.add('scene-fallback');}).finally(()=>{sceneLoading=false;});
+}
+loadSpatialScene();
 stage.addEventListener('pointermove',event=>{
  if(!isStatic()&&event.pointerType!=='touch')spatialScene?.pointer((event.clientX/innerWidth-.5)*2,(event.clientY/innerHeight-.5)*2);
 },{passive:true});
@@ -60,7 +68,7 @@ function updateCopy(i,p){
  copy.style.visibility=opacity<.015?'hidden':'visible';copy.inert=opacity<.5;copy.setAttribute('aria-hidden',String(opacity<.5));
 }
 function updateNarrative(){
- if(isStatic())return;
+ if(isStatic()||compactScreen())return;
  copies.forEach((_,i)=>updateCopy(i,progress));
  const active=progress<.3?0:progress<.7?1:2;
  chapterButtons.forEach((b,i)=>{b.classList.toggle('active',i===active);if(i===active)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
@@ -77,7 +85,14 @@ function draw(time){
  if(!document.hidden&&((!paused&&!reduced.matches)||Math.abs(targetProgress-progress)>.0005))frame=requestAnimationFrame(draw);
 }
 function requestDraw(){if(!frame)frame=requestAnimationFrame(draw);}
-function resize(){width=innerWidth;height=innerHeight;spatialScene?.resize(width,height);requestDraw();updateProjects();}
+function resize(){
+ width=innerWidth;height=innerHeight;
+ voyage.classList.toggle('compact-journey',compactScreen());
+ copies.forEach((el,i)=>{if(compactScreen()||isStatic()){el.inert=false;el.style.visibility='visible';el.setAttribute('aria-hidden','false');}else updateCopy(i,progress);});
+ if(!compactScreen()&&!spatialScene&&sceneFactory){spatialScene=sceneFactory(canvas);if(spatialScene){stage.classList.add('scene-ready');document.body.classList.add('scene-ready');document.body.classList.remove('scene-fallback');}}
+ if(!compactScreen()){spatialScene?.resize(width,height);loadSpatialScene();}
+ pageJourney?.invalidate();requestDraw();updateProjects();
+}
 function updateScroll(){
  $('.nav').classList.toggle('scrolled',scrollY>30);
  const rect=voyage.getBoundingClientRect();targetProgress=clamp(-rect.top/Math.max(1,voyage.offsetHeight-innerHeight));

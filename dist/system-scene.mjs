@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.min.js';
-import {samplePose} from './page-journey.mjs';
+import {samplePose} from './page-journey.mjs?v=mobile-4';
 
 const clamp=v=>Math.max(0,Math.min(1,v));
 const ease=(a,b,p)=>{const v=clamp((p-a)/(b-a));return v*v*(3-2*v);};

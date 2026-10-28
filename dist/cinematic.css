@@ -78,3 +78,46 @@ body{position:relative}main,footer{position:relative;z-index:1}.stage{background
 @media(max-width:1000px){.company-logo{width:140px;flex-basis:140px;height:62px;padding:12px}.career-content{padding-left:0}}
 @media(max-width:700px){.company-logo{width:116px;flex-basis:116px;height:54px;padding:9px}.company-heading strong{font-size:18px}.company-heading>span{font-size:10px}.career-date{margin-left:129px}}
 @media(max-width:360px){.company-logo{width:100px;flex-basis:100px}.career-date{margin-left:113px}.company-heading strong{font-size:16px}}
+/* Mobile uses a small compositor-animated SVG instead of the full WebGL scene. */
+.mobile-system{display:none}
+@keyframes mobile-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mobile-breathe{from{opacity:.18;transform:scale(.93)}to{opacity:.38;transform:scale(1.05)}}
+@media(max-width:700px){
+ .world-space #system-scene{display:none}
+ .mobile-system{display:block;position:absolute;width:250px;height:250px;left:var(--mobile-x,65vw);top:var(--mobile-y,72vh);translate:-50% -50%;scale:var(--mobile-scale,1);will-change:transform}
+ .mobile-system svg{width:100%;height:100%;overflow:visible}
+ .mobile-core-halo{fill:#70a9ef;opacity:.2;transform-origin:center;animation:mobile-breathe 4s ease-in-out infinite alternate}
+ .mobile-core-grid{fill:none;stroke:#c4dcff;stroke-width:.5;opacity:.3}
+ .mobile-orbits{fill:none;stroke:url(#mobile-ring-light);stroke-width:2;transform-origin:center;animation:mobile-orbit 32s linear infinite}
+ .mobile-signal{fill:#e2f1ff;transform-origin:center;animation:mobile-orbit 12s linear infinite reverse}
+ .inside-incident .mobile-orbits{stroke:var(--amber)}.inside-incident .mobile-signal{fill:var(--amber)}
+ .scene-fallback-art,.journey-rail,.stage-bottom{display:none!important}
+ .compact-journey.voyage{height:auto!important}
+ .compact-journey .stage{position:relative;height:auto;min-height:0;padding:112px 22px 0;overflow:visible}
+ .compact-journey .scene-copy{position:relative;inset:auto;max-width:none;opacity:1!important;visibility:visible!important;transform:none!important;margin:0;padding:26px 0}
+ .compact-journey .scene-copy-0{padding:0 0 210px}
+ .compact-journey .scene-copy-0 h1{font-size:clamp(55px,13vw,66px)}
+ .compact-journey .scene-copy-1,.compact-journey .scene-copy-2{border-top:1px solid var(--line)}
+ .compact-journey .scene-copy-1 h2,.compact-journey .scene-copy-2 h2{font-size:38px;line-height:1.06}
+ .compact-journey .scene-copy-1 h2 br,.compact-journey .scene-copy-2 h2 br{display:none}
+ .compact-journey .scene-copy-1 h2 br:after,.compact-journey .scene-copy-2 h2 br:after{content:' '}
+ .compact-journey .scene-copy-1 h2,.compact-journey .scene-copy-2 h2{max-width:350px}
+ .compact-journey .scene-copy .eyebrow{margin-bottom:14px}
+ .compact-journey .scene-copy .intro{margin-top:15px}
+ .compact-journey .scene-note{margin-top:17px}.compact-journey .scene-note p{font-size:12px;margin-top:6px}
+ .compact-journey .scene-copy .text-link{margin-top:13px}
+ .manifesto{padding:42px 0 32px}.manifesto>.eyebrow{margin-bottom:23px}.manifesto h2{font-size:41px}
+ .manifesto-bottom{margin:24px 0 28px}.career-strip{padding:18px 4px}
+ .experience{padding:16px 0 40px}.section-heading{margin-bottom:28px}.section-heading h2{font-size:42px}
+ .lab-section{padding:42px 0 38px}.lab-heading>p{margin-top:18px}
+ .project-pin{padding:42px 0 38px}.static-projects .project-pin{padding-block:42px}
+ .project-heading{margin-bottom:24px}.project-heading h2{font-size:44px}
+ .principles{padding:16px 0 26px}.principles>.eyebrow{margin-bottom:22px}.principle{padding:25px 0}
+ .terminal-section{padding:20px 0 38px}.terminal-section h2{margin:18px 0}.terminal{margin-top:24px}
+ .contact{padding:44px 0 52px}.contact h2{font-size:65px;margin:26px 0}
+ .continuity-status{bottom:max(10px,env(safe-area-inset-bottom));opacity:.8}
+ .nav{padding-inline:max(22px,env(safe-area-inset-left))}
+ .motion-paused .mobile-system *{animation-play-state:paused!important}
+ [data-theme=light] .mobile-core-halo{fill:#457bb3}
+}
+@media(prefers-reduced-motion:reduce){.mobile-system *{animation:none!important}}
