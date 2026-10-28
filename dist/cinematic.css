@@ -70,3 +70,11 @@ body{position:relative}main,footer{position:relative;z-index:1}.stage{background
 .motion-paused .principle:after{transform:scaleX(1)}
 .chapter-in-view .terminal-chrome>span:first-child{animation:signal-glimmer 4s ease-in-out infinite alternate}
 .motion-paused .terminal-chrome>span:first-child{animation:none}
+/* Full wordmarks need their native contrast and enough room to remain legible. */
+.company-logo{width:164px;height:68px;flex:0 0 164px;padding:14px;background:#111827;border:1px solid #324052;border-radius:5px;opacity:1}
+.company-logo img{display:block;width:100%;height:100%;max-height:none;object-fit:contain;opacity:1;filter:none}
+.company-logo-light{background:#fff;border-color:#d9e1e9}
+.career-content{padding-left:218px}
+@media(max-width:1000px){.company-logo{width:140px;flex-basis:140px;height:62px;padding:12px}.career-content{padding-left:0}}
+@media(max-width:700px){.company-logo{width:116px;flex-basis:116px;height:54px;padding:9px}.company-heading strong{font-size:18px}.company-heading>span{font-size:10px}.career-date{margin-left:129px}}
+@media(max-width:360px){.company-logo{width:100px;flex-basis:100px}.career-date{margin-left:113px}.company-heading strong{font-size:16px}}
