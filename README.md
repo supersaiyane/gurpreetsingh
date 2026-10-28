@@ -1,41 +1,32 @@
-# Gurpreet Singh - Trust is engineered
+# Cinematic systems portfolio
 
-A responsive portfolio for SRE, Cloud, DevOps and Platform Engineering leadership. Native HTML, CSS, SVG and JavaScript; no runtime packages or build step.
+A fresh, scroll-driven portfolio for Gurpreet Singh. Branch: `design/cinematic-systems`.
 
-## Run locally
+## Preview
 
-`npm run dev` serves `dist/` at http://localhost:4173.
+Run `npm run dev`, then open http://localhost:4181 . The static website lives in `dist/` and requires no build step.
 
-`npm test` runs the incident state-machine and telemetry replay checks.
+## Experience
 
-## Structure
+- Three cinematic chapters with a native canvas architecture model, scroll-driven camera, exploded layers and live traffic.
+- Chapter navigation, day/night theme, motion pause and automatic reduced-motion reading mode.
+- Company logos and an exclusive experience accordion.
+- Three simulated incidents with evidence tabs, unsafe-action blocking, safety checks and explicit human approval.
+- Five real projects in a scroll-linked gallery on desktop and a swipeable gallery on phones.
+- Portfolio terminal with command history, completion and section navigation.
 
-- `dist/index.html`: portfolio content and semantic interface
-- `dist/styles.css`: responsive design and reduced-motion styles
-- `dist/app.mjs`: architecture inspector, incident UI, exploration filters
-- `dist/incident.mjs`: deterministic simulation state and fictional scenarios
-- `.openai/hosting.json`: Sites configuration
+The architecture is code-native geometry, not a video, copied footage or image sequence. Canvas is decorative; narrative content and navigation remain accessible HTML. No source code is executed by the terminal. All incident telemetry and AI recommendations are fictional simulations.
 
-Publish `dist/` as a static directory. All asset URLs are relative, including for GitHub Pages project paths. Google Fonts is an optional presentation dependency; system fonts are the fallback.
+## References
 
-The incident lab uses fictional signals and deterministic local state. It does not call AI or operate real infrastructure. Career summaries are adapted from https://supersaiyane.github.io/gurpreetsingh/. Project and writing destinations link to existing public profiles rather than inventing project details.
+Craise (https://craise.com/) informed continuous scene pacing and pinned scroll progression. OHZI (https://ohzi.io/) informed spatial atmosphere and bright typography on a midnight canvas. Linear (https://linear.app/) informed technical text clarity. The composition, code, scene geometry, illustrations and portfolio content are specific to this portfolio.
 
+Fresh entry styles and interaction: `dist/cinematic.css` and `dist/cinematic.mjs`. Existing tested incident and terminal domain logic is reused; previous template styles and UI scripts are not loaded.
 
-## Interactive experiences
+## Verification
 
-- Selected experience uses a shared native details group, with a toggle fallback: at most one company is open.
-- The incident lab offers three fictional scenarios, deterministic replayable metrics/logs/traces, two recovery strategies, and scenario-specific safety feedback.
-- Recovery requires a passing simulated dry run and an explicit risk acknowledgement. Changing strategies invalidates earlier checks. Resetting or changing scenarios clears the current decision.
-- Completion counts remain in browser memory for this visit only. No visitor analytics or remote AI calls are used.
-- The project gallery links to the five owner-supplied projects. Descriptions follow their repository summaries; experience tags follow the supplied resume. The resume itself is not published.
+`npm test` runs the shared domain tests. Browser checks cover scene chapter changes, gallery navigation, exclusive accordion behavior, theme switching, static reading mode, terminal commands and all three incident recovery paths. A 390px iframe is used temporarily for mobile visual QA and is not part of the delivered site.
 
-## Hero terminal
+## Publishing
 
-The hero includes a local portfolio terminal inspired by the original website. Type `help` for identity, skills, projects, biography and navigation commands. Arrow keys browse a bounded session history; Tab completes a unique prefix and then lets focus move normally. `clear` clears the transcript. Commands never execute shell code or send input to a server; output is rendered as plain text.
-
-
-## Selected B + C version
-
-This design branch implements the approved combination: C's leadership narrative and serif display with B's interactive architecture flow. `dist/hybrid.css` carries the reference-locked visual system. The diagram becomes a vertical flow on mobile, with dismissible insights. The existing terminal, incident workbench, project links and accordion continue to work.
-
-`main` and the existing Sites publication preserve the previous portfolio. To preview this branch separately, run `python3 -m http.server 4175 --directory dist` and open http://localhost:4175/.
+This branch does not change the live site. To publish later, select `design/cinematic-systems` in `publishing.json` on `ops/pages-publisher`. Leave `deploy` true. The publisher uses this branch's `dist/` folder. Main and existing design branches remain untouched.
