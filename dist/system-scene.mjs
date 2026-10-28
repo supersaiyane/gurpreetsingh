@@ -1,4 +1,5 @@
 import * as THREE from './vendor/three.module.min.js';
+import {samplePose} from './page-journey.mjs';
 
 const clamp=v=>Math.max(0,Math.min(1,v));
 const ease=(a,b,p)=>{const v=clamp((p-a)/(b-a));return v*v*(3-2*v);};
@@ -25,7 +26,7 @@ export function createSystemScene(canvas){
  const metal=new THREE.MeshPhysicalMaterial({color:0x8fa4c2,metalness:.66,roughness:.22,clearcoat:1,clearcoatRoughness:.16});
  const lightMetal=new THREE.MeshPhysicalMaterial({color:0xc3d5ef,metalness:.53,roughness:.18,clearcoat:1});
  const graphite=new THREE.MeshPhysicalMaterial({color:0x253c60,metalness:.6,roughness:.27,clearcoat:1});
- const uniforms={uTime:{value:0},uProgress:{value:0},uLight:{value:0}};
+ const uniforms={uTime:{value:0},uProgress:{value:0},uLight:{value:0},uFault:{value:0}};
  const coreMaterial=new THREE.ShaderMaterial({
   uniforms,
   vertexShader:`
@@ -41,7 +42,7 @@ export function createSystemScene(canvas){
    }`,
   fragmentShader:`
    varying vec3 vNormal; varying vec3 vWorld; varying vec3 vPosition;
-   uniform float uTime; uniform float uProgress; uniform float uLight;
+   uniform float uTime; uniform float uProgress; uniform float uLight; uniform float uFault;
    void main(){
     vec3 n=normalize(vNormal),v=normalize(cameraPosition-vWorld);
     float fres=pow(1.0-max(0.0,dot(n,v)),2.2);
@@ -54,6 +55,7 @@ export function createSystemScene(canvas){
     vec3 col=deep+silver*fres*.75+silver*key*1.6+vec3(.12,.28,.5)*secondary;
     col+=silver*contour*.12*(.25+fres);
     col+=vec3(.06,.15,.27)*pow(max(0.0,n.y),2.0);
+    col=mix(col,col*vec3(1.9,1.1,.35)+vec3(.12,.045,.0)*fres,uFault*.8);
     gl_FragColor=vec4(col,1.0);
    }`
  });
@@ -112,8 +114,9 @@ export function createSystemScene(canvas){
  let mobile=false,w=1,h=1,previousTheme=null;
  const pointer={x:0,y:0},targetPointer={x:0,y:0};
  function resize(width,height){w=width;h=height;mobile=w<=700;renderer.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1.25:1.7));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
- function render({progress:p,time:t,light,still}){
-  const open=ease(.17,.58,p),focus=ease(.65,1,p);
+ function render({progress:p,time:t,light,still,chapter=0,fault=0}){
+  const open=ease(.17,.58,p)*(1-ease(6,7,chapter)),focus=ease(.65,1,p)*(1-ease(6,7,chapter));
+  uniforms.uFault.value=lerp(uniforms.uFault.value,fault,.06);
   uniforms.uTime.value=t;uniforms.uProgress.value=p;uniforms.uLight.value=light?1:0;
   if(previousTheme!==light){
    previousTheme=light;
@@ -122,8 +125,20 @@ export function createSystemScene(canvas){
    renderer.toneMappingExposure=light?1.05:1.25;
   }
   pointer.x=lerp(pointer.x,still?0:targetPointer.x,.035);pointer.y=lerp(pointer.y,still?0:targetPointer.y,.035);
-  root.position.set(mobile?.38:2.55,mobile?lerp(-2.3,-1.3,open):.02,0);
-  root.scale.setScalar(mobile?.50:1);
+  const origin={x:mobile?.38:2.55,y:mobile?lerp(-2.3,-1.3,open):.02,s:mobile?.50:1,rx:0,ry:0};
+  const poses=mobile?[
+   origin,{x:.7,y:1.6,s:.28,rx:.5,ry:.6},{x:.8,y:1.6,s:.24,rx:.2,ry:1.2},
+   {x:.5,y:1.8,s:.28,rx:.4,ry:1.7},{x:.8,y:1.9,s:.25,rx:.6,ry:2.3},
+   {x:-.8,y:1.8,s:.24,rx:.3,ry:2.7},{x:.7,y:1.5,s:.26,rx:.1,ry:3.2},
+   {x:0,y:.1,s:.68,rx:0,ry:3.6},{x:0,y:1,s:.4,rx:0,ry:4}
+  ]:[
+   origin,{x:3.1,y:1.25,s:.42,rx:.25,ry:.7},{x:3.35,y:1,s:.4,rx:.15,ry:1.3},
+   {x:3.2,y:.9,s:.43,rx:.4,ry:1.8},{x:3.7,y:1.2,s:.32,rx:.3,ry:2.4},
+   {x:-3.7,y:.9,s:.35,rx:.15,ry:2.9},{x:-2.8,y:.7,s:.38,rx:.1,ry:3.3},
+   {x:0,y:.15,s:1.13,rx:0,ry:3.7},{x:0,y:1.1,s:.8,rx:0,ry:4.1}
+  ];
+  const pose=samplePose(poses,chapter);
+  root.position.set(pose.x,pose.y,0);root.scale.setScalar(pose.s);root.rotation.set(pose.rx,pose.ry,0);
   // The camera approaches and passes around the core over the pinned chapter.
   camera.position.set(Math.sin(p*1.3)*.45+pointer.x*.14,-.04+pointer.y*.12,10-open*.9-focus*.6);
   camera.lookAt(0,0,0);
@@ -149,7 +164,7 @@ export function createSystemScene(canvas){
   stars.rotation.y=p*.08+t*.0015;stars.position.z=p*.9;
   renderer.render(scene,camera);
  }
- canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();canvas.closest('.stage').classList.add('scene-fallback');});
- canvas.addEventListener('webglcontextrestored',()=>canvas.closest('.stage').classList.remove('scene-fallback'));
+ canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();document.body.classList.add('scene-fallback');});
+ canvas.addEventListener('webglcontextrestored',()=>document.body.classList.remove('scene-fallback'));
  return{resize,render,pointer(x,y){targetPointer.x=x;targetPointer.y=y;}};
 }

@@ -10,6 +10,8 @@ Run `npm run dev`, then open http://localhost:4181 . The static website lives in
 
 - Three cinematic chapters with a real-time WebGL system sculpture, reflective orbital paths, scroll-driven camera and live signals.
 - Chapter navigation, day/night theme, motion pause and automatic reduced-motion reading mode.
+- A persistent 3D world and scroll-traced signal carry through experience, projects, principles, terminal and contact.
+- The shared signal turns amber during simulated incidents and returns to blue on recovery.
 - Company logos and an exclusive experience accordion.
 - Three simulated incidents with evidence tabs, unsafe-action blocking, safety checks and explicit human approval.
 - Five real projects in a scroll-linked gallery on desktop and a swipeable gallery on phones.
@@ -21,7 +23,7 @@ The hero is code-native 3D geometry rendered with a locally bundled Three.js 0.1
 
 Craise (https://craise.com/) informed continuous scene pacing and pinned scroll progression. OHZI (https://ohzi.io/) informed spatial atmosphere and bright typography on a midnight canvas. Linear (https://linear.app/) informed technical text clarity. The composition, code, scene geometry, illustrations and portfolio content are specific to this portfolio.
 
-Fresh entry styles and interaction: `dist/cinematic.css`, `dist/cinematic.mjs` and `dist/system-scene.mjs`. Existing tested incident and terminal domain logic is reused; previous template styles and UI scripts are not loaded.
+Fresh entry styles and interaction: `dist/cinematic.css`, `dist/cinematic.mjs`, `dist/system-scene.mjs` and `dist/page-journey.mjs`. Existing tested incident and terminal domain logic is reused; previous template styles and UI scripts are not loaded.
 
 ## Verification
 

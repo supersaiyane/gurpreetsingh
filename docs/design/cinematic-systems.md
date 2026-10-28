@@ -17,3 +17,7 @@ Acceptance: first viewport reads as a finished portfolio; camera, layer position
 ## Hero revision after visual feedback
 
 The flat stack did not deliver the intended depth. Replace it with a real-time WebGL sculpture: a reflective core, three orbital paths with signals and a camera approach through the scroll chapters. Locally bundle Three.js; independent dynamic loading preserves the page when GPU rendering is unavailable. Keep the page layouts, incident logic and current live publishing choice unchanged. Remove decorative labels that compete with the artwork.
+
+## Continuous page choreography
+
+Carry one WebGL scene through the full page instead of unmounting it after the hero. Scroll interpolates a measured sequence of section poses. The core moves beside experience and other section headings, then reassembles behind contact. A traced signal line connects section milestones and its tint reflects incident/recovery state. Add reversible principle underline motion and gentle project-art activity, with one global pause/reduced-motion path. Measure section offsets after accordion/layout changes. Keep the canvas decorative, behind all content and pointer-inert. Pause rendering when the document is hidden.

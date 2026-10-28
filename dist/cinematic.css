@@ -29,3 +29,44 @@
 .journey-rail{z-index:3;right:2.5%;padding:8px 12px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:30px}
 .scene-fallback #system-scene{opacity:0}
 @media(max-width:700px){.journey-rail{right:4%;padding:5px 8px}}
+/* One continuous world: the hero object hands off into the background of the page. */
+body{position:relative}main,footer{position:relative;z-index:1}.stage{background:transparent}
+.world-space{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--world-opacity,1);transition:opacity .2s var(--ease)}
+.world-space #system-scene{width:100%;height:100%;inset:0}
+.page-signal{position:absolute;top:0;left:0;width:100%;z-index:2;pointer-events:none;overflow:hidden;opacity:0;color:var(--blue)}
+.signal-base{fill:none;stroke:var(--line);stroke-width:1}
+.signal-trace{fill:none;stroke:var(--blue);stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1}
+.signal-cursor{fill:var(--text);stroke:var(--blue);stroke-width:5;stroke-opacity:.17;filter:drop-shadow(0 0 5px #8bbcff)}
+.signal-nodes circle{fill:var(--bg);stroke:var(--line);stroke-width:1}.signal-nodes .passed circle{stroke:var(--blue);fill:var(--blue)}
+.continuity-status{position:fixed;left:42px;bottom:20px;z-index:12;pointer-events:none;display:flex;align-items:center;gap:10px;opacity:0;font:8px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);padding:9px 12px;border:1px solid var(--line);border-radius:3px;color:var(--muted)}
+.continuity-status i{height:4px;width:4px;border-radius:50%;background:var(--blue);box-shadow:0 0 9px var(--blue)}.continuity-status b{font-weight:400;color:var(--text)}
+.manifesto h2>span{color:color-mix(in srgb,var(--text) calc(var(--section-progress,0)*90%),var(--muted))}
+.career-strip{background:linear-gradient(90deg,color-mix(in srgb,var(--blue) 5%,transparent),transparent);background-size:calc(100% * var(--section-progress,0)) 100%;background-repeat:no-repeat}
+.lab-section{background:color-mix(in srgb,var(--surface) 70%,transparent)}
+.incident-console{position:relative;transition:border-color .35s var(--ease)}
+.inside-incident .incident-console{border-color:color-mix(in srgb,var(--amber) 45%,var(--line))}
+.inside-incident .signal-trace{stroke:var(--amber)}.inside-incident .signal-cursor{stroke:var(--amber);filter:drop-shadow(0 0 5px var(--amber))}.inside-incident .continuity-status i{background:var(--amber);box-shadow:0 0 9px var(--amber)}
+.principle{position:relative;border-top-color:transparent}
+.principle:before,.principle:after{content:'';position:absolute;left:0;top:0;height:1px;width:100%;background:var(--line);transform-origin:left}
+.principle:after{background:var(--blue);transform:scaleX(var(--row-progress,0));opacity:.5}
+.principle h3{transform:translateX(calc((1 - var(--row-progress,0))*10px))}
+.project-art>.art-orbit,.project-art>.hex,.project-art>.loop-symbol,.project-art>.gateway-bars,.project-art>.blueprint-grid{translate:var(--art-drift,0) 0}
+.chapter-in-view .art-orbit{animation:orbit-turn 18s ease-in-out infinite alternate}
+.chapter-in-view .art-point{animation:signal-glimmer 3s ease-in-out infinite alternate}
+.chapter-in-view .point-b{animation-delay:-1s}.chapter-in-view .point-c{animation-delay:-2s}
+.chapter-in-view .gateway-bars i{animation:gateway-flow 2.7s ease-in-out infinite alternate;transform-origin:bottom}
+.chapter-in-view .gateway-bars i:nth-child(2n){animation-delay:-1.3s}.chapter-in-view .gateway-bars i:nth-child(3n){animation-delay:-.7s}
+.chapter-in-view .terminal-chrome>span:first-child{color:var(--blue)}
+.contact .contact-orbit{opacity:calc(1 - var(--section-progress,0));transform:translate(-50%,-50%) rotate(calc(-23deg + var(--section-progress,0)*35deg))}
+.contact h2{text-shadow:0 3px 35px var(--bg)}
+.motion-paused .world-space,.motion-paused .page-signal,.motion-paused .continuity-status{display:none}
+.motion-paused .project-art *{animation-play-state:paused!important;translate:none!important}.motion-paused .principle h3{transform:none}
+@keyframes orbit-turn{from{transform:rotate(-30deg)}to{transform:rotate(20deg)}}
+@keyframes signal-glimmer{from{opacity:.35}to{opacity:1}}
+@keyframes gateway-flow{from{transform:scaleY(.65)}to{transform:scaleY(1.1)}}
+@media(max-width:700px){.continuity-status{left:22px;bottom:10px;font-size:6px;padding:6px 8px;gap:7px}.signal-base,.signal-trace{stroke-width:.7}.signal-nodes circle{r:2px}}
+@media(prefers-reduced-motion:reduce){.world-space,.page-signal,.continuity-status{display:none!important}.principle h3{transform:none}.project-art *{translate:none!important}}
+.motion-paused .reveal{opacity:1;transform:none;transition:none}
+.motion-paused .principle:after{transform:scaleX(1)}
+.chapter-in-view .terminal-chrome>span:first-child{animation:signal-glimmer 4s ease-in-out infinite alternate}
+.motion-paused .terminal-chrome>span:first-child{animation:none}

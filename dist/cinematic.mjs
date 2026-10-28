@@ -1,3 +1,4 @@
+import {createPageJourney} from './page-journey.mjs';
 import {initialState, transition, scenarios, evidenceFor} from './incident.mjs';
 import {resolveCommand, commandNames} from './terminal.mjs';
 
@@ -8,7 +9,7 @@ const smooth=(a,b,v)=>{const x=clamp((v-a)/(b-a));return x*x*(3-2*x);};
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let paused=false, light=false, inScene=true, targetProgress=0, progress=0, frame=null, lastTime=0, clock=0;
 const voyage=$('.voyage'),stage=$('.stage'),canvas=$('#system-scene');
-let spatialScene=null;
+let spatialScene=null,pageJourney=null;
 const copies=$$('.scene-copy'),chapterButtons=$$('[data-chapter]');
 let width=0,height=0,dpr=1;
 try{light=localStorage.getItem('portfolio-theme')==='light';}catch{}
@@ -28,7 +29,7 @@ function setMotion(){
  $('#motion-toggle').disabled=reduced.matches;
  $('#motion-toggle').textContent=reduced.matches?'Motion reduced':paused?'Resume motion':'Pause motion';
  document.body.classList.toggle('motion-paused',paused||reduced.matches);
- updateScroll();resize();requestDraw();
+ pageJourney?.invalidate();updateScroll();resize();requestDraw();
 }
 $('#motion-toggle').addEventListener('click',()=>{paused=!paused;$('#motion-toggle').setAttribute('aria-pressed',String(paused));setMotion();});
 reduced.addEventListener('change',setMotion);
@@ -36,14 +37,15 @@ document.body.classList.add('js-motion');
 
 // GPU scene loading is independent of page behavior: content remains usable without WebGL.
 function drawScene(){
- spatialScene?.render({progress:isStatic()?0:progress,time:clock,light,still:isStatic()});
+ const journey=pageJourney?.frame({time:clock,still:isStatic(),light})||{chapter:0,fault:0};
+ spatialScene?.render({progress:isStatic()?0:progress,time:clock,light,still:isStatic(),...journey});
 }
 import('./system-scene.mjs').then(({createSystemScene})=>{
  spatialScene=createSystemScene(canvas);
- stage.classList.toggle('scene-fallback',!spatialScene);
- if(spatialScene){spatialScene.resize(width,height);stage.classList.add('scene-ready');}
+ stage.classList.toggle('scene-fallback',!spatialScene);document.body.classList.toggle('scene-fallback',!spatialScene);
+ if(spatialScene){spatialScene.resize(width,height);stage.classList.add('scene-ready');document.body.classList.add('scene-ready');}
  requestDraw();
-}).catch(()=>stage.classList.add('scene-fallback'));
+}).catch(()=>{stage.classList.add('scene-fallback');document.body.classList.add('scene-fallback');});
 stage.addEventListener('pointermove',event=>{
  if(!isStatic()&&event.pointerType!=='touch')spatialScene?.pointer((event.clientX/innerWidth-.5)*2,(event.clientY/innerHeight-.5)*2);
 },{passive:true});
@@ -69,17 +71,17 @@ function updateNarrative(){
 function draw(time){
  frame=null;
  const dt=Math.min((time-lastTime)/1000,.05)||0;lastTime=time;
- if(!paused&&!reduced.matches&&inScene&&!document.hidden)clock+=dt;
+ if(!paused&&!reduced.matches&&!document.hidden)clock+=dt;
  progress=Math.abs(targetProgress-progress)<.0005?targetProgress:mix(progress,targetProgress,.15);
  updateNarrative();drawScene();
- if(!document.hidden&&inScene&&((!paused&&!reduced.matches)||Math.abs(targetProgress-progress)>.0005))frame=requestAnimationFrame(draw);
+ if(!document.hidden&&((!paused&&!reduced.matches)||Math.abs(targetProgress-progress)>.0005))frame=requestAnimationFrame(draw);
 }
 function requestDraw(){if(!frame)frame=requestAnimationFrame(draw);}
-function resize(){width=stage.clientWidth;height=stage.clientHeight;spatialScene?.resize(width,height);requestDraw();updateProjects();}
+function resize(){width=innerWidth;height=innerHeight;spatialScene?.resize(width,height);requestDraw();updateProjects();}
 function updateScroll(){
  $('.nav').classList.toggle('scrolled',scrollY>30);
  const rect=voyage.getBoundingClientRect();targetProgress=clamp(-rect.top/Math.max(1,voyage.offsetHeight-innerHeight));
- updateProjects();requestDraw();
+ updateProjects();pageJourney?.update();requestDraw();
 }
 chapterButtons.forEach(button=>button.addEventListener('click',()=>{
  const target=[0,.49,.96][Number(button.dataset.chapter)];
@@ -145,6 +147,7 @@ function renderIncident(){
   $('#lesson').textContent=scenario.lesson;
  }
  $('#completion-count').textContent=completed.size+' / 3 SCENARIOS RECOVERED';
+ pageJourney?.incident(active);
 }
 function dispatch(event,id){state=transition(state,event,id);if(state.phase==='recovered')completed.add(state.scenario);renderIncident();}
 $$('[data-scenario]').forEach(b=>b.addEventListener('click',()=>dispatch('inject',b.dataset.scenario)));
@@ -171,4 +174,4 @@ $('#terminal-input').addEventListener('keydown',e=>{
  if(['ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();historyIndex=clamp(historyIndex+(e.key==='ArrowUp'?-1:1),0,history.length);e.target.value=history[historyIndex]||'';}
  if(e.key==='Tab'){const matches=commandNames.filter(command=>command.startsWith(e.target.value));if(matches.length===1){e.preventDefault();e.target.value=matches[0];}}
 });
-theme();setMotion();resize();renderIncident();updateScroll();
+pageJourney=createPageJourney();theme();setMotion();resize();renderIncident();updateScroll();

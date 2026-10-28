@@ -18,3 +18,12 @@
 - 390px iframe screenshot verified the adjusted sculpture position clears the main copy and action.
 - Motion pause leaves all three chapter headings visible in static reading mode. Day/night controls remain functional.
 - New scene and controller syntax checks passed; all 16 domain tests passed again. Temporary mobile QA harness removed.
+
+## Continuous page journey verification
+
+- 19 domain tests pass, including continuous section coordinates, accordion layout remeasurement, boundary clamping and multi-channel pose interpolation.
+- Browser desktop: the same WebGL canvas stays visible after the hero; experience carries the smaller core in the margin, the signal line traces the route, and contact reassembles the core behind the closing typography.
+- Browser incident check: a latency injection changed the shared signal to amber; bounded safety check, acknowledgment and approval restored blue. Recovery logic remains unchanged.
+- Global motion pause hides the world and signal and leaves all three narrative chapters accessible. Resume restores the continuous canvas.
+- 390px iframe: experience text, company controls and signal route visually checked; object stays behind content. No browser runtime errors in the desktop journey.
+- Temporary mobile harness removed; all changes remain isolated to design/cinematic-systems.
