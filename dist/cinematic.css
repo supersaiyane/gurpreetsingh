@@ -11,3 +11,21 @@
 @media(min-width:701px){#projects{scroll-margin-top:-100px}}
 /* Relative static chapters must clear the mobile cinematic right offset. */
 .static-journey .scene-copy{right:auto}
+/* Revised hero: a spatial sculpture with a camera passage, instead of exploded panels. */
+.scene-atmosphere{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 78% 43%,#19365430 0%,#12284412 29%,transparent 65%),radial-gradient(ellipse at 90% 90%,#1b375f18,transparent 60%)}
+.scene-vignette{opacity:.7;background:linear-gradient(90deg,var(--bg) 0%,transparent 58%),linear-gradient(0deg,var(--bg),transparent 15%)}
+#system-scene{opacity:0;transition:opacity 1.2s var(--ease)}
+.scene-ready #system-scene{opacity:1}
+.scene-fallback-art{position:absolute;left:54%;top:17%;width:40%;aspect-ratio:1;display:grid;place-items:center;opacity:.4;transition:opacity .5s}
+.scene-fallback-art i{position:absolute;width:90%;height:55%;border:1px solid var(--blue);border-radius:50%;transform:rotate(-35deg)}
+.scene-fallback-art i:nth-child(2){transform:rotate(45deg);height:80%;width:60%}
+.scene-fallback-art i:nth-child(3){height:65%;width:80%;transform:rotate(12deg)}
+.scene-ready .scene-fallback-art{opacity:0}
+.scene-fallback .scene-fallback-art{opacity:.65}
+.scene-label{bottom:16%;right:10%}
+@media(max-width:700px){.scene-vignette{background:linear-gradient(180deg,var(--bg),transparent 70%,var(--bg));opacity:.75}.scene-label{bottom:11%;right:7%;font-size:6px}.scene-label>span:last-child{display:none}.scene-fallback-art{left:30%;top:58%;width:65%}.static-journey #system-scene{opacity:.55}}
+[data-theme=light] .scene-atmosphere{background:radial-gradient(ellipse at 78% 43%,#a6c2e348,transparent 65%)}
+.scene-label{display:none}
+.journey-rail{z-index:3;right:2.5%;padding:8px 12px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:30px}
+.scene-fallback #system-scene{opacity:0}
+@media(max-width:700px){.journey-rail{right:4%;padding:5px 8px}}

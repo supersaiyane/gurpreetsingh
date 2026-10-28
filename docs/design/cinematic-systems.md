@@ -13,3 +13,7 @@ Implementation sequence:
 4. Verify domain tests, browser desktop/mobile, keyboard, reduced motion, all local assets and external link destinations. Commit/push new branch only, serve a local browser preview.
 
 Acceptance: first viewport reads as a finished portfolio; camera, layer positions and text change visibly with scroll; navigation lands correctly; all three simulated incidents have bounded versus unsafe decisions with dry run and acknowledgment; five projects route correctly; no emdash; no layout overflow; pause and reduced motion preserve access to all content.
+
+## Hero revision after visual feedback
+
+The flat stack did not deliver the intended depth. Replace it with a real-time WebGL sculpture: a reflective core, three orbital paths with signals and a camera approach through the scroll chapters. Locally bundle Three.js; independent dynamic loading preserves the page when GPU rendering is unavailable. Keep the page layouts, incident logic and current live publishing choice unchanged. Remove decorative labels that compete with the artwork.
